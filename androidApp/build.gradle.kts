@@ -4,14 +4,32 @@ plugins {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = Versions.androidCompileSdk
     defaultConfig {
         applicationId = "com.example.mtgkmm.android"
-        minSdk = 23
-        targetSdk = 32
+        minSdk = Versions.androidMinSdk
+        targetSdk = Versions.androidTargetSdk
         versionCode = 1
         versionName = "1.0"
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -21,7 +39,30 @@ android {
 
 dependencies {
     implementation(project(":common"))
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+
+    with(Dependencies.AndroidX) {
+        implementation(lifecycleRuntimeKtx)
+        implementation(lifecycleViewmodelKtx)
+        implementation(activityCompose)
+    }
+
+    with(Dependencies.Compose) {
+        implementation(compiler)
+        implementation(ui)
+        implementation(uiGraphics)
+        implementation(foundationLayout)
+        implementation(material)
+        implementation(navigation)
+        implementation(coilCompose)
+        implementation(accompanistNavigationAnimation)
+        implementation(uiTooling)
+    }
+
+    with(Dependencies.Koin) {
+        implementation(core)
+        implementation(android)
+        implementation(compose)
+        testImplementation(test)
+        testImplementation(testJUnit4)
+    }
 }
