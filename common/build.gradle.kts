@@ -37,6 +37,11 @@ kotlin {
                     implementation(runtime)
                     implementation(coroutineExtensions)
                 }
+
+                with(Dependencies.Koin) {
+                    api(core)
+                    api(test)
+                }
             }
         }
         val commonTest by getting {
