@@ -5,6 +5,7 @@ object Versions {
 
     const val koin = "3.1.6"
     const val ktor = "2.0.0"
+    const val sqlDelight = "1.5.3"
 
     const val compose = "1.2.0-alpha08"
     const val composeCompiler = "1.2.0-alpha08"
@@ -57,5 +58,12 @@ object Dependencies {
         const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
         const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
         const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
+    }
+
+    object SqlDelight {
+        const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
+        const val coroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
+        const val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
+        const val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
     }
 }

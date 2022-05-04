@@ -32,6 +32,11 @@ kotlin {
                     implementation(contentNegotiation)
                     implementation(json)
                 }
+
+                with(Dependencies.SqlDelight) {
+                    implementation(runtime)
+                    implementation(coroutineExtensions)
+                }
             }
         }
         val commonTest by getting {
@@ -42,6 +47,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(Dependencies.Ktor.clientAndroid)
+                implementation(Dependencies.SqlDelight.androidDriver)
             }
         }
         val androidTest by getting
@@ -52,6 +58,7 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(Dependencies.Ktor.clientIos)
+                implementation(Dependencies.SqlDelight.nativeDriver)
             }
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
