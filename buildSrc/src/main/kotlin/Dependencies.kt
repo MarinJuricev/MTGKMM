@@ -4,6 +4,7 @@ object Versions {
     const val androidTargetSdk = androidCompileSdk
 
     const val koin = "3.1.6"
+    const val ktor = "2.0.0"
 
     const val compose = "1.2.0-alpha08"
     const val composeCompiler = "1.2.0-alpha08"
@@ -46,5 +47,15 @@ object Dependencies {
         const val testJUnit4 = "io.insert-koin:koin-test-junit4:${Versions.koin}"
         const val android = "io.insert-koin:koin-android:${Versions.koin}"
         const val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
+    }
+
+    object Ktor {
+        const val clientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
+        const val clientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
+        const val clientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
+        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
+        const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
+        const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
+        const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
     }
 }
