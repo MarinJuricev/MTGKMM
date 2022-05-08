@@ -57,7 +57,7 @@ object Dependencies {
         const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
         const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
         const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
-        const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
+        const val clientOkhttp = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
     }
 
     object SqlDelight {

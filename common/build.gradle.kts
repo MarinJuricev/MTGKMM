@@ -51,7 +51,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(Dependencies.Ktor.clientAndroid)
+                implementation(Dependencies.Ktor.clientOkhttp)
                 implementation(Dependencies.SqlDelight.androidDriver)
             }
         }
@@ -82,10 +82,14 @@ kotlin {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = Versions.androidCompileSdk
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 23
-        targetSdk = 32
+        minSdk = Versions.androidMinSdk
+        targetSdk = Versions.androidTargetSdk
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
