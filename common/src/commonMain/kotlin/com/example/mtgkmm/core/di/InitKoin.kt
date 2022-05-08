@@ -1,5 +1,6 @@
 package com.example.mtgkmm.core.di
 
+import com.example.mtgkmm.feature.search.di.searchModule
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -21,6 +22,7 @@ fun initKoin(
     module {
         platformModule()
         commonModule(enableNetworkLogs)
+        searchModule
     }
 }
 
