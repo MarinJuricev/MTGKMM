@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("kotlinx-serialization")
 }
 
 version = "1.0"
@@ -25,6 +26,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                with(Dependencies.Kotlinx) {
+                    implementation(coroutinesCore)
+                    implementation(serializationCore)
+                }
+
                 with(Dependencies.Ktor) {
                     implementation(clientCore)
                     implementation(clientJson)

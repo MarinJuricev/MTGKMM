@@ -3,6 +3,9 @@ object Versions {
     const val androidCompileSdk = 32
     const val androidTargetSdk = androidCompileSdk
 
+    const val kotlinCoroutines = "1.6.1"
+    const val kotlinxSerialization = "1.3.1"
+
     const val koin = "3.1.6"
     const val ktor = "2.0.0"
     const val sqlDelight = "1.5.3"
@@ -22,6 +25,12 @@ object Versions {
 }
 
 object Dependencies {
+
+    object Kotlinx {
+        const val serializationCore = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
+        const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutines}"
+    }
 
     object Compose {
         const val compiler = "androidx.compose.compiler:compiler:${Versions.composeCompiler}"
