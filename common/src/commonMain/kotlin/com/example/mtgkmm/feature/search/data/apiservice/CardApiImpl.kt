@@ -7,6 +7,7 @@ import com.example.mtgkmm.feature.search.data.model.NetworkCardsResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.request.parameter
 import io.ktor.http.appendPathSegments
 
 class CardApiImpl(
@@ -18,8 +19,12 @@ class CardApiImpl(
     ): Either<Failure, NetworkCardsResponse> {
         return client.apiCall { httpClient ->
             httpClient.get {
-                url.appendPathSegments("test")
+                url.appendPathSegments(CARDS_END_POINT)
+                parameter(CARD_NAME_QUERY_PARAMETER, cardName)
             }.body()
         }
     }
 }
+
+private const val CARDS_END_POINT = "cards/search"
+private const val CARD_NAME_QUERY_PARAMETER = "q"
