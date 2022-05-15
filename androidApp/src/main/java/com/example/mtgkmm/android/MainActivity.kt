@@ -7,21 +7,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
 import com.example.mtgkmm.Greeting
-
-fun greet(): String {
-    return Greeting().greeting()
-}
+import com.example.mtgkmm.android.search.SearchScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            Box(
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(greet())
-            }
+            SearchScreen()
         }
     }
 }
