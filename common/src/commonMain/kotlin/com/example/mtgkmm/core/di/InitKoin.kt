@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalSerializationApi::class)
+
 package com.example.mtgkmm.core.di
 
 import com.example.mtgkmm.feature.search.di.searchModule
@@ -10,6 +12,7 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
@@ -36,6 +39,7 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
         Json {
             isLenient = true
             ignoreUnknownKeys = true
+            explicitNulls = false
         }
     }
 
