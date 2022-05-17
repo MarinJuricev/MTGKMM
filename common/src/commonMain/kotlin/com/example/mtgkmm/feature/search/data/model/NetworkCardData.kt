@@ -22,7 +22,7 @@ data class NetworkCardData(
     val cardFaces: List<NetworkCardFace>?,
     @SerialName("cardmarket_id")
     val cardMarketId: Int?,
-    val cmc: Int?,
+    val cmc: Float?,
     @SerialName("collector_number")
     val collectorNumber: String?,
     @SerialName("color_identity")
