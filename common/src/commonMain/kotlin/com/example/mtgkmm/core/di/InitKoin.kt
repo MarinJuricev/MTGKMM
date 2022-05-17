@@ -21,11 +21,11 @@ fun initKoin(
     appDeclaration: KoinAppDeclaration = {}
 ) = startKoin {
     appDeclaration()
-    module {
-        platformModule()
-        commonModule(enableNetworkLogs)
+    modules(
+        platformModule(),
+        commonModule(enableNetworkLogs),
         searchModule
-    }
+    )
 }
 
 // Called by non Android consumers
