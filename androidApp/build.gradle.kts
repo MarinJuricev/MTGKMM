@@ -55,7 +55,8 @@ dependencies {
         implementation(navigation)
         implementation(coilCompose)
         implementation(accompanistNavigationAnimation)
-        implementation(uiTooling)
+        implementation(accompanistPlaceholder)
+        debugImplementation(uiTooling)
     }
 
     with(Dependencies.Koin) {

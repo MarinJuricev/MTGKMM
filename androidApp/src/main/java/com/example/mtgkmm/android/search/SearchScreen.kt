@@ -1,23 +1,25 @@
 package com.example.mtgkmm.android.search
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import com.example.mtgkmm.android.search.components.MtgCardGrid
+import com.example.mtgkmm.android.search.model.SearchEvent
 import com.example.mtgkmm.android.search.model.SearchEvent.OnSearchUpdate
-import com.example.mtgkmm.android.search.viewmodel.SearchViewModel
-import org.koin.androidx.compose.getViewModel
+import com.example.mtgkmm.android.search.model.SearchState
 
 @Composable
 fun SearchScreen(
-    viewModel: SearchViewModel = getViewModel(),
+    state: SearchState,
+    onEvent: (SearchEvent) -> Unit,
 ) {
-    val state by viewModel.state.collectAsState()
 
     Scaffold(
         topBar = {
@@ -25,16 +27,25 @@ fun SearchScreen(
                 OutlinedTextField(
                     value = state.currentSearch,
                     onValueChange = { updatedSearch ->
-                        viewModel.onEvent(OnSearchUpdate(updatedSearch))
+                        onEvent(OnSearchUpdate(updatedSearch))
                     }
                 )
             }
         }
     ) { paddingValues ->
-        Box(
+        Column(
             modifier = Modifier.padding(paddingValues)
         ) {
-
+            AnimatedVisibility(
+                visible = state.isLoading,
+            ) {
+                LinearProgressIndicator(
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
+            state.data?.let { data ->
+                MtgCardGrid(data.cards)
+            }
         }
     }
 }

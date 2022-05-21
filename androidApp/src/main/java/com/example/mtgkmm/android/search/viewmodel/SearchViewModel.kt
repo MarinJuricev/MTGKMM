@@ -56,20 +56,23 @@ class SearchViewModel(
     }
 
     private fun handleOnGetCards() = viewModelScope.launch {
+        isLoading.update { true }
         when (val result = getCards(searchText.value)) {
             is Right -> cardData.update { result.value }
             is Left -> error.update { result.error.toString() }
         }
+        isLoading.update { false }
     }
 
     private fun handleSearchUpdate(cardName: String) {
-        if(searchJob?.isActive == true) searchJob?.cancel()
+        if (searchJob?.isActive == true) searchJob?.cancel()
         searchJob = viewModelScope.launch {
-            delay(SEARCH_DEBOUNCE)
+            isLoading.update { true }
             searchText.update { cardName }
+            delay(SEARCH_DEBOUNCE)
             handleOnGetCards()
         }
     }
 }
 
-private const val SEARCH_DEBOUNCE = 300L
+private const val SEARCH_DEBOUNCE = 500L
