@@ -10,6 +10,7 @@ import com.example.mtgkmm.core.Either.Left
 import com.example.mtgkmm.core.Either.Right
 import com.example.mtgkmm.feature.search.domain.model.MtgCardsData
 import com.example.mtgkmm.feature.search.domain.usecase.GetCards
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -26,6 +27,8 @@ class SearchViewModel(
     private val cardData = MutableStateFlow<MtgCardsData?>(null)
     private val searchText = MutableStateFlow("")
     private val isLoading = MutableStateFlow(false)
+
+    private var searchJob: Job? = null
 
     val state = combine(
         cardData,
@@ -59,8 +62,14 @@ class SearchViewModel(
         }
     }
 
-    private fun handleSearchUpdate(cardName: String) = viewModelScope.launch {
-        searchText.update { cardName }
-        handleOnGetCards()
+    private fun handleSearchUpdate(cardName: String) {
+        if(searchJob?.isActive == true) searchJob?.cancel()
+        searchJob = viewModelScope.launch {
+            delay(SEARCH_DEBOUNCE)
+            searchText.update { cardName }
+            handleOnGetCards()
+        }
     }
 }
+
+private const val SEARCH_DEBOUNCE = 300L
