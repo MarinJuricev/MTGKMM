@@ -1,5 +1,6 @@
 package com.example.mtgkmm.android.search.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -9,16 +10,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.mtgkmm.android.core.MtgAsyncImage
+import com.example.mtgkmm.android.search.model.SearchEvent
+import com.example.mtgkmm.android.search.model.SearchEvent.OnCardClick
 import com.example.mtgkmm.feature.search.domain.model.MtgCard
 
 @Composable
-fun MtgCardGrid(cards: List<MtgCard>) {
+fun MtgCardGrid(
+    cards: List<MtgCard>,
+    onEvent: (SearchEvent) -> Unit,
+) {
     LazyVerticalGrid(columns = GridCells.Fixed(GRID_COUNT)) {
         items(cards, key = { mtgCard -> mtgCard.name }) { mtgCard ->
             MtgAsyncImage(
                 modifier = Modifier
                     .size(256.dp)
-                    .padding(8.dp),
+                    .padding(8.dp)
+                    .clickable { onEvent(OnCardClick(mtgCard)) },
                 url = mtgCard.url,
                 contentDescription = mtgCard.name,
             )

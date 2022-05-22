@@ -2,25 +2,29 @@ package com.example.mtgkmm.android.search.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.example.mtgkmm.android.core.BaseViewModel
+import com.example.mtgkmm.android.core.navigation.Navigator
 import com.example.mtgkmm.android.search.model.SearchEvent
-import com.example.mtgkmm.android.search.model.SearchEvent.OnGetCards
-import com.example.mtgkmm.android.search.model.SearchEvent.OnSearchUpdate
+import com.example.mtgkmm.android.search.model.SearchEvent.*
 import com.example.mtgkmm.android.search.model.SearchState
 import com.example.mtgkmm.core.Either.Left
 import com.example.mtgkmm.core.Either.Right
+import com.example.mtgkmm.feature.search.domain.model.MtgCard
 import com.example.mtgkmm.feature.search.domain.model.MtgCardsData
 import com.example.mtgkmm.feature.search.domain.usecase.GetCards
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
     private val getCards: GetCards,
+    private val navigator: Navigator,
 ) : BaseViewModel<SearchEvent>() {
 
     private val error = MutableStateFlow<String?>(null)
@@ -52,6 +56,7 @@ class SearchViewModel(
         when (event) {
             is OnGetCards -> handleOnGetCards()
             is OnSearchUpdate -> handleSearchUpdate(event.cardName)
+            is OnCardClick -> handleCardClick(event.mtgCard)
         }
     }
 
@@ -72,6 +77,10 @@ class SearchViewModel(
             delay(SEARCH_DEBOUNCE)
             handleOnGetCards()
         }
+    }
+
+    private fun handleCardClick(mtgCard: MtgCard) {
+
     }
 }
 

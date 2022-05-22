@@ -1,20 +1,20 @@
 package com.example.mtgkmm.android
 
 import android.os.Bundle
-import android.widget.SearchView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.material.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
-import com.example.mtgkmm.Greeting
+import com.example.mtgkmm.android.core.navigation.Navigator
 import com.example.mtgkmm.android.search.SearchScreen
 import com.example.mtgkmm.android.search.viewmodel.SearchViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.compose.getViewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val navigator: Navigator by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

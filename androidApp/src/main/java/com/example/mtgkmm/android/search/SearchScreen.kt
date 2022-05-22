@@ -9,11 +9,13 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import com.example.mtgkmm.android.search.components.MtgCardGrid
 import com.example.mtgkmm.android.search.model.SearchEvent
 import com.example.mtgkmm.android.search.model.SearchEvent.OnSearchUpdate
 import com.example.mtgkmm.android.search.model.SearchState
+import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun SearchScreen(
@@ -44,7 +46,10 @@ fun SearchScreen(
                 )
             }
             state.data?.let { data ->
-                MtgCardGrid(data.cards)
+                MtgCardGrid(
+                    cards = data.cards,
+                    onEvent = onEvent,
+                )
             }
         }
     }
