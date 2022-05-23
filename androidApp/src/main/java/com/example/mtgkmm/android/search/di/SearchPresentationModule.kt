@@ -8,6 +8,7 @@ val searchPresentationModule = module {
     viewModel {
         SearchViewModel(
             getCards = get(),
+            navigator = get(),
         )
     }
 }
