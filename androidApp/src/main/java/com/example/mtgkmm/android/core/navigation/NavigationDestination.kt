@@ -1,15 +1,14 @@
 package com.example.mtgkmm.android.core.navigation
 
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
+import androidx.navigation.NamedNavArgument
+import androidx.navigation.NavDeepLink
 
-// Heavily inspired from https://funkymuse.dev/posts/compose_hilt_mm/
-class NavigationDestination {
+fun interface NavigationDestination {
 
-    private val _navigationEvent = Channel<NavigationEvent>(Channel.BUFFERED)
-    val navigationEvent = _navigationEvent.receiveAsFlow()
+    fun route(): String
+    val arguments: List<NamedNavArgument>
+        get() = emptyList()
 
-    suspend fun emitDestination(navigationEvent: NavigationEvent) {
-        _navigationEvent.send(navigationEvent)
-    }
+    val deepLinks: List<NavDeepLink>
+        get() = emptyList()
 }
