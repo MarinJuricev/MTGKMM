@@ -42,7 +42,7 @@ dependencies {
 
     with(Dependencies.AndroidX) {
         implementation(lifecycleRuntimeKtx)
-        implementation(lifecycleViewmodelKtx)
+        implementation(lifecycleViewModelKtx)
         implementation(activityCompose)
     }
 
