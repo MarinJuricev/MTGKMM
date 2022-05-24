@@ -14,13 +14,9 @@ fun NavGraphBuilder.buildSearchGraph() {
         startDestination = SearchDestination.route(),
         route = SearchRootDestination.route()
     ) {
-        composable(SearchDestination.route()) {
-            val viewModel: SearchViewModel = getViewModel()
-            val state by viewModel.state.collectAsState()
-
+        composable(SearchDestination.route()) { navBackStackEntry ->
             SearchScreen(
-                state,
-                viewModel::onEvent
+                viewModel = getViewModel(owner = navBackStackEntry)
             )
         }
     }

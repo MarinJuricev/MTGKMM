@@ -5,16 +5,29 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import com.example.mtgkmm.android.core.navigation.LocalTopBarEvents
+import com.example.mtgkmm.android.core.topbar.TopBarViewState
+import com.example.mtgkmm.android.core.topbar.model.TopBarEvent.OnTopBarChange
 import com.example.mtgkmm.android.search.components.MtgCardGrid
-import com.example.mtgkmm.android.search.model.SearchEvent
-import com.example.mtgkmm.android.search.model.SearchState
+import com.example.mtgkmm.android.search.components.MtgSearchTopBar
+import com.example.mtgkmm.android.search.viewmodel.SearchViewModel
 
 @Composable
 fun SearchScreen(
-    state: SearchState,
-    onEvent: (SearchEvent) -> Unit,
+    viewModel: SearchViewModel,
 ) {
+    val topBarEvent = LocalTopBarEvents.current
+    val state by viewModel.state.collectAsState()
+
+    LaunchedEffect(key1 = Unit) {
+        topBarEvent?.invoke(OnTopBarChange(TopBarViewState(isVisible = true) {
+            MtgSearchTopBar(state, viewModel::onEvent)
+        }))
+    }
     Column {
         AnimatedVisibility(
             visible = state.isLoading,
@@ -26,7 +39,7 @@ fun SearchScreen(
         state.data?.let { data ->
             MtgCardGrid(
                 cards = data.cards,
-                onEvent = onEvent,
+                onEvent = viewModel::onEvent,
             )
         }
     }

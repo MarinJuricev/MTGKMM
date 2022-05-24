@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.mtgkmm.android.core.navigation.MtgNavigation
 import com.example.mtgkmm.android.core.navigation.Navigator
+import com.example.mtgkmm.android.core.theme.MtgTheme
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
@@ -15,9 +16,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MtgNavigation(
-                navigator = navigator,
-            )
+            MtgTheme {
+                MtgNavigation(
+                    navigator = navigator,
+                )
+            }
         }
     }
 }
