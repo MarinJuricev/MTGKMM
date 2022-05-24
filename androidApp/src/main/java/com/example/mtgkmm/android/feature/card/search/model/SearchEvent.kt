@@ -1,4 +1,4 @@
-package com.example.mtgkmm.android.search.model
+package com.example.mtgkmm.android.feature.card.search.model
 
 import com.example.mtgkmm.feature.search.domain.model.MtgCard
 

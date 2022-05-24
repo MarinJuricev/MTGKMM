@@ -1,4 +1,4 @@
-package com.example.mtgkmm.android.search.components
+package com.example.mtgkmm.android.feature.card.search.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import com.example.mtgkmm.android.R
-import com.example.mtgkmm.android.search.model.SearchEvent
-import com.example.mtgkmm.android.search.model.SearchState
+import com.example.mtgkmm.android.feature.card.search.model.SearchEvent
+import com.example.mtgkmm.android.feature.card.search.model.SearchState
 
 @Composable
 fun MtgSearchTopBar(

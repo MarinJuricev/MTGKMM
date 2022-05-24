@@ -1,4 +1,4 @@
-package com.example.mtgkmm.android.search.components
+package com.example.mtgkmm.android.feature.card.search.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
@@ -10,8 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.mtgkmm.android.core.MtgAsyncImage
-import com.example.mtgkmm.android.search.model.SearchEvent
-import com.example.mtgkmm.android.search.model.SearchEvent.OnCardClick
+import com.example.mtgkmm.android.feature.card.search.model.SearchEvent
+import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.OnCardClick
 import com.example.mtgkmm.feature.search.domain.model.MtgCard
 
 @Composable

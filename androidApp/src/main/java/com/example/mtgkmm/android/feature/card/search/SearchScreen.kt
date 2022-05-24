@@ -1,4 +1,4 @@
-package com.example.mtgkmm.android.search
+package com.example.mtgkmm.android.feature.card.search
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
@@ -13,9 +13,9 @@ import androidx.compose.ui.Modifier
 import com.example.mtgkmm.android.core.navigation.LocalTopBarEvents
 import com.example.mtgkmm.android.core.topbar.TopBarViewState
 import com.example.mtgkmm.android.core.topbar.model.TopBarEvent.OnTopBarChange
-import com.example.mtgkmm.android.search.components.MtgCardGrid
-import com.example.mtgkmm.android.search.components.MtgSearchTopBar
-import com.example.mtgkmm.android.search.viewmodel.SearchViewModel
+import com.example.mtgkmm.android.feature.card.search.components.MtgCardGrid
+import com.example.mtgkmm.android.feature.card.search.components.MtgSearchTopBar
+import com.example.mtgkmm.android.feature.card.search.viewmodel.SearchViewModel
 
 @Composable
 fun SearchScreen(
@@ -24,7 +24,7 @@ fun SearchScreen(
     val topBarEvent = LocalTopBarEvents.current
     val state by viewModel.state.collectAsState()
 
-    LaunchedEffect(key1 = Unit) {
+    LaunchedEffect(key1 = topBarEvent) {
         topBarEvent?.invoke(OnTopBarChange(TopBarViewState(isVisible = true) {
             MtgSearchTopBar(state, viewModel::onEvent)
         }))
@@ -42,6 +42,10 @@ fun SearchScreen(
                 cards = data.cards,
                 onEvent = viewModel::onEvent,
             )
-        } ?: Text("Stvarno ?")
+        }
+
+        if (state.data?.cards.isNullOrEmpty()) {
+            Text("Empty")
+        }
     }
 }

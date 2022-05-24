@@ -1,9 +1,7 @@
 package com.example.mtgkmm.android.core.navigation
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -17,18 +15,13 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mtgkmm.android.core.topbar.MtgTopBar
 import com.example.mtgkmm.android.core.topbar.TopBarViewModel
 import com.example.mtgkmm.android.core.topbar.model.TopBarEvent
-import com.example.mtgkmm.android.search.navigation.SearchDestination
-import com.example.mtgkmm.android.search.navigation.SearchRootDestination
-import com.example.mtgkmm.android.search.navigation.buildSearchGraph
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.example.mtgkmm.android.feature.card.navigation.CardRootDestination
+import com.example.mtgkmm.android.feature.card.navigation.buildCardGraph
 import org.koin.androidx.compose.getViewModel
 
 val LocalTopBarEvents: ProvidableCompositionLocal<((TopBarEvent) -> Unit)?> =
     compositionLocalOf { null }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MtgNavigation(
     navigator: Navigator,
@@ -55,10 +48,10 @@ fun MtgNavigation(
         ) { paddingValues ->
             NavHost(
                 navController = navController,
-                startDestination = SearchRootDestination.route(),
+                startDestination = CardRootDestination.route(),
                 modifier = Modifier.padding(paddingValues)
             ) {
-                buildSearchGraph()
+                buildCardGraph()
             }
         }
     }

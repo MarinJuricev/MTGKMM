@@ -42,7 +42,6 @@ object Dependencies {
         const val navigation = "androidx.navigation:navigation-compose:${Versions.navCompose}"
 
         const val coilCompose = "io.coil-kt:coil-compose:${Versions.coilCompose}"
-        const val accompanistNavigationAnimation =  "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
         const val accompanistPlaceholder = "com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}"
     }
 
