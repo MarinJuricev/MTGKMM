@@ -4,13 +4,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import com.example.mtgkmm.android.R
 import com.example.mtgkmm.android.search.model.SearchEvent
@@ -26,8 +27,10 @@ fun MtgSearchTopBar(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.CenterStart,
         ) {
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
+            TextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .scale(scaleY = 0.9F, scaleX = 1F),
                 value = state.currentSearch,
                 label = { Text(text = stringResource(id = R.string.search)) },
                 colors = TextFieldDefaults.outlinedTextFieldColors(
