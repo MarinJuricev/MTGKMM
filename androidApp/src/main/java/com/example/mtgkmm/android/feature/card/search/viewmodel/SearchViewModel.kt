@@ -2,7 +2,12 @@ package com.example.mtgkmm.android.feature.card.search.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.example.mtgkmm.android.core.BaseViewModel
+import com.example.mtgkmm.android.core.navigation.NavigationEvent
 import com.example.mtgkmm.android.core.navigation.Navigator
+import com.example.mtgkmm.android.feature.card.model.UiMtgCard
+import com.example.mtgkmm.android.feature.card.model.UiMtgCardsData
+import com.example.mtgkmm.android.feature.card.model.toUi
+import com.example.mtgkmm.android.feature.card.navigation.CardDetailDestination
 import com.example.mtgkmm.android.feature.card.search.model.SearchEvent
 import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.OnCardClick
 import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.OnGetCards
@@ -10,8 +15,6 @@ import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.OnSearch
 import com.example.mtgkmm.android.feature.card.search.model.SearchState
 import com.example.mtgkmm.core.Either.Left
 import com.example.mtgkmm.core.Either.Right
-import com.example.mtgkmm.feature.search.domain.model.MtgCard
-import com.example.mtgkmm.feature.search.domain.model.MtgCardsData
 import com.example.mtgkmm.feature.search.domain.usecase.GetCards
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -28,7 +31,7 @@ class SearchViewModel(
 ) : BaseViewModel<SearchEvent>() {
 
     private val error = MutableStateFlow<String?>(null)
-    private val cardData = MutableStateFlow<MtgCardsData?>(null)
+    private val cardData = MutableStateFlow<UiMtgCardsData?>(null)
     private val searchText = MutableStateFlow("")
     private val isLoading = MutableStateFlow(false)
 
@@ -63,7 +66,7 @@ class SearchViewModel(
     private fun handleOnGetCards() = viewModelScope.launch {
         isLoading.update { true }
         when (val result = getCards(searchText.value)) {
-            is Right -> cardData.update { result.value }
+            is Right -> cardData.update { result.value.toUi() }
             is Left -> error.update { result.error.toString() }
         }
         isLoading.update { false }
@@ -79,8 +82,10 @@ class SearchViewModel(
         }
     }
 
-    private fun handleCardClick(mtgCard: MtgCard) {
-
+    private fun handleCardClick(mtgCard: UiMtgCard) = viewModelScope.launch {
+        navigator.emitDestination(
+            NavigationEvent.Destination(CardDetailDestination.buildRoute(mtgCard))
+        )
     }
 }
 

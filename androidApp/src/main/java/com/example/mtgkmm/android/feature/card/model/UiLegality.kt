@@ -1,7 +1,11 @@
 package com.example.mtgkmm.android.feature.card.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-sealed class UiLegality(open val legalityType: UiLegalityType) {
+@Parcelize
+@kotlinx.serialization.Serializable
+sealed class UiLegality(open val legalityType: UiLegalityType) : Parcelable {
     data class Standard(override val legalityType: UiLegalityType) : UiLegality(legalityType)
     data class Future(override val legalityType: UiLegalityType) : UiLegality(legalityType)
     data class Historic(override val legalityType: UiLegalityType) : UiLegality(legalityType)

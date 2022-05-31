@@ -27,8 +27,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 with(Dependencies.Kotlinx) {
-                    implementation(coroutinesCore)
-                    implementation(serializationCore)
+                    api(coroutinesCore)
+                    api(serializationCore)
+                    api(serializationJson)
                 }
 
                 with(Dependencies.Ktor) {

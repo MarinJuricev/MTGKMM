@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.mtgkmm.android.core.MtgAsyncImage
+import com.example.mtgkmm.android.feature.card.model.UiMtgCard
 import com.example.mtgkmm.android.feature.card.search.model.SearchEvent
 import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.OnCardClick
-import com.example.mtgkmm.feature.search.domain.model.MtgCard
 
 @Composable
 fun MtgCardGrid(
-    cards: List<MtgCard>,
+    cards: List<UiMtgCard>,
     onEvent: (SearchEvent) -> Unit,
 ) {
     LazyVerticalGrid(columns = GridCells.Fixed(GRID_COUNT)) {
