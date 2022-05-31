@@ -11,6 +11,10 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
         classpath("com.android.tools.build:gradle:$gradleVersion")
+
+        with(Dependencies.Gradle) {
+            classpath(sqlDelight)
+        }
     }
 }
 

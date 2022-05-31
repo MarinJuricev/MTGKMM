@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("kotlinx-serialization")
+    id("com.squareup.sqldelight")
 }
 
 version = "1.0"
@@ -98,5 +99,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+sqldelight {
+    database("MtgKmmDatabase") {
+        packageName = "com.example.mtgkmm.core.db"
+        sourceFolders = listOf("sqldelight")
     }
 }
