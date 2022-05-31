@@ -15,3 +15,8 @@ fun MtgStat.toUi(): UiMtgStat = UiMtgStat(
     power = power,
     toughness = toughness,
 )
+
+fun UiMtgStat.toDomain(): MtgStat = MtgStat(
+    power = power,
+    toughness = toughness,
+)

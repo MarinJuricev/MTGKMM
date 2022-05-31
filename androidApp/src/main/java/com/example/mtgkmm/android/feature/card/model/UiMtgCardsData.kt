@@ -10,19 +10,5 @@ data class UiMtgCardsData(
 fun MtgCardsData.toUi(): UiMtgCardsData =
     UiMtgCardsData(
         pagination = pagination.toUi(),
-        cards = cards.map { card ->
-            with(card) {
-                UiMtgCard(
-                    name = name,
-                    manaCost = manaCost,
-                    creature = creature,
-                    url = url,
-                    keywords = keywords,
-                    stat = stat.toUi(),
-                    oracleText = oracleText,
-                    legalities = emptyList(),
-                    artist = artist,
-                )
-            }
-        }
+        cards = cards.map { card -> card.toUi() }
     )

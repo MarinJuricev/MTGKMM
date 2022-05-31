@@ -9,30 +9,32 @@ import com.example.mtgkmm.android.feature.card.model.UiMtgCardsData
 import com.example.mtgkmm.android.feature.card.model.toUi
 import com.example.mtgkmm.android.feature.card.navigation.CardDetailDestination
 import com.example.mtgkmm.android.feature.card.search.model.SearchEvent
-import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.OnCardClick
-import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.OnGetCards
-import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.OnSearchUpdate
+import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.*
 import com.example.mtgkmm.android.feature.card.search.model.SearchState
 import com.example.mtgkmm.core.Either.Left
 import com.example.mtgkmm.core.Either.Right
 import com.example.mtgkmm.feature.search.domain.usecase.GetCards
+import com.example.mtgkmm.feature.search.domain.usecase.ObserveRecentlyViewedCards
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
     private val getCards: GetCards,
+    private val observeRecentlyViewedCards: ObserveRecentlyViewedCards,
     private val navigator: Navigator,
 ) : BaseViewModel<SearchEvent>() {
 
     private val error = MutableStateFlow<String?>(null)
     private val cardData = MutableStateFlow<UiMtgCardsData?>(null)
     private val searchText = MutableStateFlow("")
+    private val recentlyViewedCards = MutableStateFlow<List<UiMtgCard>>(emptyList())
     private val isLoading = MutableStateFlow(false)
 
     private var searchJob: Job? = null
@@ -42,12 +44,14 @@ class SearchViewModel(
         error,
         searchText,
         isLoading,
-    ) { data, error, searchText, isLoading ->
+        recentlyViewedCards,
+    ) { data, error, searchText, isLoading, recentlyViewedCards ->
         SearchState(
             isLoading = isLoading,
             error = error,
             currentSearch = searchText,
             data = data,
+            recentlyViewedCards = recentlyViewedCards,
         )
     }.stateIn(
         viewModelScope,
@@ -65,11 +69,26 @@ class SearchViewModel(
 
     private fun handleOnGetCards() = viewModelScope.launch {
         isLoading.update { true }
+        getCards()
+        observeRecentCards()
+        isLoading.update { false }
+    }
+
+    private suspend fun getCards() {
         when (val result = getCards(searchText.value)) {
             is Right -> cardData.update { result.value.toUi() }
             is Left -> error.update { result.error.toString() }
         }
-        isLoading.update { false }
+    }
+
+    private suspend fun observeRecentCards() {
+        observeRecentlyViewedCards()
+            .onEach { mtgCards ->
+                recentlyViewedCards.update {
+                    mtgCards.map { it.toUi() }
+                }
+            }
+            .stateIn(viewModelScope)
     }
 
     private fun handleSearchUpdate(cardName: String) {

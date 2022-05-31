@@ -6,6 +6,8 @@ import org.koin.dsl.module
 
 val detailPresentationModule = module {
     viewModel {
-        DetailViewModel()
+        DetailViewModel(
+            saveCard = get()
+        )
     }
 }
