@@ -1,19 +1,27 @@
 package com.example.mtgkmm.android.feature.card.navigation
 
-import androidx.navigation.NamedNavArgument
+import android.net.Uri
 import com.example.mtgkmm.android.core.navigation.NavigationDestination
+import com.example.mtgkmm.android.feature.card.model.UiMtgCard
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-object CardDetailDestination : NavigationDestination {
+object CardDetailDestination : NavigationDestination<UiMtgCard>, KoinComponent {
 
-    const val CARD_DETAIL_ID_PARAM = "id"
+    private val serializer: Json by inject()
+
+    const val CARD_DETAIL_PARAM = "card"
 
     private const val CARD_DETAIL_ROOT = "cardDetail"
-    private const val CARD_DETAIL_ROUTE = "$CARD_DETAIL_ROOT/{$CARD_DETAIL_ID_PARAM}"
+    private const val CARD_DETAIL_ROUTE = "$CARD_DETAIL_ROOT/{$CARD_DETAIL_PARAM}"
 
     override fun route(): String = CARD_DETAIL_ROUTE
 
-    override val arguments: List<NamedNavArgument>
-        get() = super.arguments
+    override fun buildRoute(data: UiMtgCard): String =
+        "$CARD_DETAIL_ROOT/${Uri.encode(serializer.encodeToString(data))}"
+
 }
 
 
