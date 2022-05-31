@@ -39,6 +39,18 @@ class SearchViewModel(
 
     private var searchJob: Job? = null
 
+    init {
+        viewModelScope.launch {
+            observeRecentlyViewedCards()
+                .onEach { mtgCards ->
+                    recentlyViewedCards.update {
+                        mtgCards.map { it.toUi() }
+                    }
+                }
+                .stateIn(this)
+        }
+    }
+
     val state = combine(
         cardData,
         error,
@@ -69,26 +81,11 @@ class SearchViewModel(
 
     private fun handleOnGetCards() = viewModelScope.launch {
         isLoading.update { true }
-        getCards()
-        observeRecentCards()
-        isLoading.update { false }
-    }
-
-    private suspend fun getCards() {
         when (val result = getCards(searchText.value)) {
             is Right -> cardData.update { result.value.toUi() }
             is Left -> error.update { result.error.toString() }
         }
-    }
-
-    private suspend fun observeRecentCards() {
-        observeRecentlyViewedCards()
-            .onEach { mtgCards ->
-                recentlyViewedCards.update {
-                    mtgCards.map { it.toUi() }
-                }
-            }
-            .stateIn(viewModelScope)
+        isLoading.update { false }
     }
 
     private fun handleSearchUpdate(cardName: String) {
