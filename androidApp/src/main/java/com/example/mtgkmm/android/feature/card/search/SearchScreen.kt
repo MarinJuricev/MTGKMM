@@ -53,11 +53,13 @@ fun SearchScreen(
                 modifier = Modifier.weight(0.8f),
                 errorMessage = stringResource(id = R.string.empty_search)
             )
-            MtgRecentlyViewedCards(
-                modifier = Modifier.align(Alignment.End),
-                recentlyViewedCards = state.recentlyViewedCards,
-                onEvent = viewModel::onEvent
-            )
+            AnimatedVisibility(visible = state.recentlyViewedCards.isNotEmpty()) {
+                MtgRecentlyViewedCards(
+                    modifier = Modifier.align(Alignment.End),
+                    recentlyViewedCards = state.recentlyViewedCards,
+                    onEvent = viewModel::onEvent
+                )
+            }
         }
     }
 }

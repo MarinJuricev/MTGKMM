@@ -13,7 +13,8 @@ actual fun platformModule() = module {
         MtgKmmDatabase(
             AndroidSqliteDriver(MtgKmmDatabase.Schema, get(), "mtgkmm.db"),
             localMtgCardAdapter = LocalMtgCard.Adapter(
-                creatureAdapter = EnumColumnAdapter()
+                creatureAdapter = EnumColumnAdapter(),
+                keywordsAdapter = get(),
             )
         )
     }

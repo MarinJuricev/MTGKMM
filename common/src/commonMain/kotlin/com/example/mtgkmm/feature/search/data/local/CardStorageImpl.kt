@@ -16,13 +16,12 @@ class CardStorageImpl(
 
     override suspend fun saveCard(card: MtgCard): Either<Failure, Unit> {
         return with(card) {
-            //TODO map this correctly
             localMtgCardQueries.insertItem(
                 name,
                 manaCost,
                 creature,
                 url,
-                keywords.toString(),
+                keywords,
                 stat.toString(),
                 oracleText,
                 legalities.toString(),

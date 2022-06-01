@@ -41,13 +41,12 @@ class CardRepositoryImpl(
 }
 
 private fun LocalMtgCard.toDomain(): MtgCard =
-    //TODO Map correctly
     MtgCard(
         name = name,
         manaCost = manaCost,
         creature = creature,
         url = url,
-        keywords = emptyList(),
+        keywords = keywords,
         stat = MtgStat(0, 0),
         oracleText = oracleText,
         legalities = emptyList(),

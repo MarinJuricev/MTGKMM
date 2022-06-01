@@ -3,16 +3,17 @@
 package com.example.mtgkmm.core.di
 
 import com.example.mtgkmm.feature.search.di.searchModule
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.plugins.logging.DEFAULT
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
-import io.ktor.client.plugins.logging.Logging
-import io.ktor.serialization.kotlinx.json.json
+import com.example.mtgkmm.feature.search.domain.model.MtgKeyword
+import com.squareup.sqldelight.ColumnAdapter
+import io.ktor.client.*
+import io.ktor.client.engine.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
@@ -54,6 +55,22 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
             enableNetworkLogs = enableNetworkLogs,
             baseUrl = get(named(BASE_URL))
         )
+    }
+
+    single<ColumnAdapter<List<MtgKeyword>, String>> {
+        val serializer: Json = get()
+
+        object : ColumnAdapter<List<MtgKeyword>, String> {
+            override fun decode(databaseValue: String) =
+                if (databaseValue.isEmpty()) {
+                    listOf()
+                } else {
+                    serializer.decodeFromString<List<MtgKeyword>>(databaseValue)
+                }
+
+            override fun encode(value: List<MtgKeyword>) =
+                serializer.encodeToString(value)
+        }
     }
 
 }

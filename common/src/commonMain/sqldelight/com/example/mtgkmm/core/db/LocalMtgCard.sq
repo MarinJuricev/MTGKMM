@@ -1,11 +1,13 @@
 import com.example.mtgkmm.feature.search.domain.model.MtgCreature;
+import com.example.mtgkmm.feature.search.domain.model.MtgKeyword;
+import kotlin.collections.List;
 
 CREATE TABLE localMtgCard(
 name TEXT NOT NULL PRIMARY KEY,
 manaCost INTEGER AS Int NOT NULL,
 creature TEXT AS MtgCreature NOT NULL,
 url TEXT NOT NULL,
-keywords TEXT NOT NULL,
+keywords TEXT AS List<MtgKeyword> NOT NULL,
 stat TEXT NOT NULL,
 oracleText TEXT NOT NULL,
 legalities TEXT NOT NULL,
