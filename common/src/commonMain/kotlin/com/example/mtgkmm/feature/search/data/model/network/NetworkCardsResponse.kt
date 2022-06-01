@@ -1,4 +1,4 @@
-package com.example.mtgkmm.feature.search.data.model
+package com.example.mtgkmm.feature.search.data.model.network
 
 
 import com.example.mtgkmm.core.ext.orEmpty
