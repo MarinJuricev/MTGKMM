@@ -13,3 +13,9 @@ fun LocalMtgStat.toDomain(): MtgStat =
         power,
         toughness
     )
+
+fun MtgStat.toLocal(): LocalMtgStat =
+    LocalMtgStat(
+        power,
+        toughness
+    )

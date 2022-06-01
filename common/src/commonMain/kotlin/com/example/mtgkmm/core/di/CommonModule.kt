@@ -1,7 +1,7 @@
 package com.example.mtgkmm.core.di
 
+import com.example.mtgkmm.feature.search.data.model.local.LocalMtgStat
 import com.example.mtgkmm.feature.search.domain.model.MtgKeyword
-import com.example.mtgkmm.feature.search.domain.model.MtgStat
 import com.squareup.sqldelight.ColumnAdapter
 import io.ktor.client.*
 import io.ktor.client.engine.*
@@ -55,16 +55,16 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
         }
     }
 
-    single<ColumnAdapter<MtgStat, String>>(
+    single<ColumnAdapter<LocalMtgStat, String>>(
         named(MTG_STAT_ADAPTER_NAME)
     ) {
         val serializer: Json = get()
 
-        object : ColumnAdapter<MtgStat, String> {
+        object : ColumnAdapter<LocalMtgStat, String> {
             override fun decode(databaseValue: String) =
-                serializer.decodeFromString<MtgStat>(databaseValue)
+                serializer.decodeFromString<LocalMtgStat>(databaseValue)
 
-            override fun encode(value: MtgStat) =
+            override fun encode(value: LocalMtgStat) =
                 serializer.encodeToString(value)
         }
     }

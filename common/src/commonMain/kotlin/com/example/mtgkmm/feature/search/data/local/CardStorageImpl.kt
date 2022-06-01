@@ -5,6 +5,7 @@ import com.example.mtgkmm.core.Failure
 import com.example.mtgkmm.core.buildRight
 import com.example.mtgkmm.core.db.LocalMtgCard
 import com.example.mtgkmm.core.db.LocalMtgCardQueries
+import com.example.mtgkmm.feature.search.data.model.local.toLocal
 import com.example.mtgkmm.feature.search.domain.model.MtgCard
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
@@ -22,7 +23,7 @@ class CardStorageImpl(
                 creature,
                 url,
                 keywords,
-                stat,
+                stat.toLocal(),
                 oracleText,
                 legalities.toString(),
                 artist,

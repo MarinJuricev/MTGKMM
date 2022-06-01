@@ -3,6 +3,7 @@ package com.example.mtgkmm.android.feature.card.search.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.example.mtgkmm.android.core.BaseViewModel
 import com.example.mtgkmm.android.core.navigation.NavigationEvent
+import com.example.mtgkmm.android.core.navigation.NavigationEvent.*
 import com.example.mtgkmm.android.core.navigation.Navigator
 import com.example.mtgkmm.android.feature.card.model.UiMtgCard
 import com.example.mtgkmm.android.feature.card.model.UiMtgCardsData
@@ -100,7 +101,7 @@ class SearchViewModel(
 
     private fun handleCardClick(mtgCard: UiMtgCard) = viewModelScope.launch {
         navigator.emitDestination(
-            NavigationEvent.Destination(CardDetailDestination.buildRoute(mtgCard))
+            Destination(CardDetailDestination.buildRoute(mtgCard))
         )
     }
 }
