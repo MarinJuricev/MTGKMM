@@ -1,16 +1,19 @@
 package com.example.mtgkmm.android.core
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import coil.request.ImageRequest
+import com.example.mtgkmm.android.R
+import com.example.mtgkmm.android.core.components.topbar.MtgErrorScreen
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.material.placeholder
 import com.google.accompanist.placeholder.material.shimmer
@@ -33,7 +36,12 @@ fun MtgAsyncImage(
     ) {
         when (painter.state) {
             AsyncImagePainter.State.Empty -> {
-                //TODO Handle this case also
+                MtgErrorScreen(
+                    modifier = Modifier
+                        .wrapContentSize(),
+                    shrugTextStyle = MaterialTheme.typography.h6,
+                    errorMessage = stringResource(id = R.string.image_empty_error)
+                )
             }
             is AsyncImagePainter.State.Loading -> {
                 if (placeHolder != null)
@@ -54,10 +62,11 @@ fun MtgAsyncImage(
                 if (error != null)
                     error()
                 else {
-                    Box(
+                    MtgErrorScreen(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color.Red)
+                            .wrapContentSize(),
+                        shrugTextStyle = MaterialTheme.typography.h6,
+                        errorMessage = stringResource(id = R.string.image_fetch_error)
                     )
                 }
         }

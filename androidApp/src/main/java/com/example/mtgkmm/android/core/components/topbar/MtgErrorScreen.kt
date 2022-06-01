@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.mtgkmm.android.R
@@ -22,6 +23,7 @@ import com.example.mtgkmm.android.R
 fun MtgErrorScreen(
     errorMessage: String,
     modifier: Modifier = Modifier,
+    shrugTextStyle: TextStyle = MaterialTheme.typography.h2,
 ) {
     Card(
         modifier = modifier
@@ -38,7 +40,7 @@ fun MtgErrorScreen(
         ) {
             Text(
                 text = stringResource(id = R.string.shrug_emoji),
-                style = MaterialTheme.typography.h2,
+                style = shrugTextStyle,
                 textAlign = TextAlign.Center,
             )
             Spacer(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.margin_medium)))
