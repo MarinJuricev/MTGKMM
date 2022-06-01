@@ -19,7 +19,6 @@ fun DetailScreen(
 
     LaunchedEffect(key1 = Unit) {
         topBarEvent?.invoke(OnTopBarChange(TopBarViewState()))
-
         viewModel.onEvent(OnDetailOpened(mtgCard))
     }
 

@@ -8,10 +8,10 @@ import com.example.mtgkmm.core.buildRight
 import com.example.mtgkmm.core.db.LocalMtgCard
 import com.example.mtgkmm.feature.search.data.apiservice.CardApi
 import com.example.mtgkmm.feature.search.data.local.CardStorage
-import com.example.mtgkmm.feature.search.data.model.toDomain
+import com.example.mtgkmm.feature.search.data.model.local.toDomain
+import com.example.mtgkmm.feature.search.data.model.network.toDomain
 import com.example.mtgkmm.feature.search.domain.model.MtgCard
 import com.example.mtgkmm.feature.search.domain.model.MtgCardsData
-import com.example.mtgkmm.feature.search.domain.model.MtgStat
 import com.example.mtgkmm.feature.search.domain.repository.CardRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -47,7 +47,7 @@ private fun LocalMtgCard.toDomain(): MtgCard =
         creature = creature,
         url = url,
         keywords = keywords,
-        stat = MtgStat(0, 0),
+        stat = stat.toDomain(),
         oracleText = oracleText,
         legalities = emptyList(),
         artist = artist,

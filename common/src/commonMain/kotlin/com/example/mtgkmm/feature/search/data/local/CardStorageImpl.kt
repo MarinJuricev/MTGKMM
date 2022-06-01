@@ -22,7 +22,7 @@ class CardStorageImpl(
                 creature,
                 url,
                 keywords,
-                stat.toString(),
+                stat,
                 oracleText,
                 legalities.toString(),
                 artist,

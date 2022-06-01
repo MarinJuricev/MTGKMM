@@ -5,6 +5,7 @@ import com.example.mtgkmm.core.db.MtgKmmDatabase
 import com.squareup.sqldelight.EnumColumnAdapter
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import io.ktor.client.engine.okhttp.*
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 actual fun platformModule() = module {
@@ -14,7 +15,8 @@ actual fun platformModule() = module {
             AndroidSqliteDriver(MtgKmmDatabase.Schema, get(), "mtgkmm.db"),
             localMtgCardAdapter = LocalMtgCard.Adapter(
                 creatureAdapter = EnumColumnAdapter(),
-                keywordsAdapter = get(),
+                keywordsAdapter = get(named(MTG_KEYWORD_ADAPTER_NAME)),
+                statAdapter = get(named(MTG_STAT_ADAPTER_NAME)),
             )
         )
     }

@@ -3,7 +3,7 @@ package com.example.mtgkmm.feature.search.data.apiservice
 import com.example.mtgkmm.core.Either
 import com.example.mtgkmm.core.Failure
 import com.example.mtgkmm.core.data.apiCall
-import com.example.mtgkmm.feature.search.data.model.NetworkCardsResponse
+import com.example.mtgkmm.feature.search.data.model.network.NetworkCardsResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
