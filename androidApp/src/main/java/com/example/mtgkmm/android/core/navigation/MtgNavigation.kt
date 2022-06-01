@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.example.mtgkmm.android.core.topbar.MtgTopBar
-import com.example.mtgkmm.android.core.topbar.TopBarViewModel
-import com.example.mtgkmm.android.core.topbar.model.TopBarEvent
+import com.example.mtgkmm.android.core.components.topbar.MtgTopBar
+import com.example.mtgkmm.android.core.components.topbar.TopBarViewModel
+import com.example.mtgkmm.android.core.components.topbar.model.TopBarEvent
 import com.example.mtgkmm.android.feature.card.navigation.CardRootDestination
 import com.example.mtgkmm.android.feature.card.navigation.buildCardGraph
 import org.koin.androidx.compose.getViewModel

@@ -1,8 +1,8 @@
-package com.example.mtgkmm.android.core.topbar
+package com.example.mtgkmm.android.core.components.topbar
 
 import com.example.mtgkmm.android.core.BaseViewModel
-import com.example.mtgkmm.android.core.topbar.model.TopBarEvent
-import com.example.mtgkmm.android.core.topbar.model.TopBarEvent.OnTopBarChange
+import com.example.mtgkmm.android.core.components.topbar.model.TopBarEvent
+import com.example.mtgkmm.android.core.components.topbar.model.TopBarEvent.OnTopBarChange
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

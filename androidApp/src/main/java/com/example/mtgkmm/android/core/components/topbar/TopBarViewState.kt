@@ -1,4 +1,4 @@
-package com.example.mtgkmm.android.core.topbar
+package com.example.mtgkmm.android.core.components.topbar
 
 import androidx.compose.runtime.Composable
 
