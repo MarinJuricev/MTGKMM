@@ -1,9 +1,8 @@
 package com.example.mtgkmm.feature.search.data.model.network
 
 
-import com.example.mtgkmm.core.ext.orEmpty
-import com.example.mtgkmm.core.ext.orFalse
 import com.example.mtgkmm.core.ext.orZero
+import com.example.mtgkmm.core.ext.orFalse
 import com.example.mtgkmm.feature.search.domain.model.MtgCard
 import com.example.mtgkmm.feature.search.domain.model.MtgCardsData
 import com.example.mtgkmm.feature.search.domain.model.MtgCreature
@@ -29,7 +28,7 @@ data class NetworkCardsResponse(
 fun NetworkCardsResponse.toDomain(): MtgCardsData =
     MtgCardsData(
         pagination = Pagination(
-            totalCards = totalCards.orEmpty(),
+            totalCards = totalCards.orZero(),
             hasMore = hasMore.orFalse(),
             nextPage = nextPage.orEmpty(),
         ),
