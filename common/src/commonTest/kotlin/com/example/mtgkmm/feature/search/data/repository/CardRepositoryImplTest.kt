@@ -140,11 +140,9 @@ private fun MtgCard.toLocal(): LocalMtgCard =
         artist = artist,
     )
 
-private fun buildMtgCard(
-    cardName: String = CARD_NAME
-): MtgCard =
+private fun buildMtgCard(): MtgCard =
     MtgCard(
-        cardName,
+        CARD_NAME,
         MANA_COST,
         CREATURE,
         URL,
