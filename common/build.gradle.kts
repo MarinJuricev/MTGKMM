@@ -56,6 +56,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-annotations-common"))
+                implementation(Dependencies.Test.turbine)
             }
         }
         val androidMain by getting {

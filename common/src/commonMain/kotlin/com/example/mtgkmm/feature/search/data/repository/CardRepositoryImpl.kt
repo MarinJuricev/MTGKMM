@@ -8,7 +8,9 @@ import com.example.mtgkmm.core.buildRight
 import com.example.mtgkmm.core.db.LocalMtgCard
 import com.example.mtgkmm.feature.search.data.apiservice.CardApi
 import com.example.mtgkmm.feature.search.data.local.CardStorage
+import com.example.mtgkmm.feature.search.data.model.local.LocalMtgStat
 import com.example.mtgkmm.feature.search.data.model.local.toDomain
+import com.example.mtgkmm.feature.search.data.model.local.toLocal
 import com.example.mtgkmm.feature.search.data.model.network.toDomain
 import com.example.mtgkmm.feature.search.domain.model.MtgCard
 import com.example.mtgkmm.feature.search.domain.model.MtgCardsData

@@ -22,6 +22,8 @@ object Versions {
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewmodelKtx = lifecycleKtx
 
+    const val turbine = "0.8.0"
+
 }
 
 object Dependencies {
@@ -79,5 +81,9 @@ object Dependencies {
 
     object Gradle {
         const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
+    }
+
+    object Test {
+        const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
     }
 }
