@@ -19,7 +19,7 @@ import com.example.mtgkmm.feature.search.domain.model.MtgStat
 import com.example.mtgkmm.feature.search.domain.repository.CardRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -28,7 +28,7 @@ class CardRepositoryImplTest {
     private lateinit var sut: CardRepository
 
     @Test
-    fun `getCards SHOULD return EitherRight WHEN cardApi returns Right`() = runBlocking {
+    fun `getCards SHOULD return EitherRight WHEN cardApi returns Right`() = runTest {
         sut = CardRepositoryImpl(
             cardApi = TestCardApiSuccess(),
             cardStorage = TestCardStorage()
@@ -47,7 +47,7 @@ class CardRepositoryImplTest {
     }
 
     @Test
-    fun `getCards SHOULD return EitherLeft WHEN cardApi returns Left`() = runBlocking {
+    fun `getCards SHOULD return EitherLeft WHEN cardApi returns Left`() = runTest {
         sut = CardRepositoryImpl(
             cardApi = TestCardApiFailure(),
             cardStorage = TestCardStorage()
@@ -60,7 +60,7 @@ class CardRepositoryImplTest {
     }
 
     @Test
-    fun `saveCard SHOULD return result from cardStorage saveCard`() = runBlocking {
+    fun `saveCard SHOULD return result from cardStorage saveCard`() = runTest {
         sut = CardRepositoryImpl(
             cardApi = TestCardApiFailure(),
             cardStorage = TestCardStorage()
@@ -75,7 +75,7 @@ class CardRepositoryImplTest {
 
     @Test
     fun `observeRecentlyViewedCards SHOULD return two items when we saveCard is called twice`() =
-        runBlocking {
+        runTest {
             sut = CardRepositoryImpl(
                 cardApi = TestCardApiFailure(),
                 cardStorage = TestCardStorage()

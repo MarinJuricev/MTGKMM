@@ -57,6 +57,7 @@ kotlin {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-annotations-common"))
                 implementation(Dependencies.Test.turbine)
+                implementation(Dependencies.Kotlinx.coroutinesTest)
             }
         }
         val androidMain by getting {
@@ -112,5 +113,13 @@ sqldelight {
     database("MtgKmmDatabase") {
         packageName = "com.example.mtgkmm.core.db"
         sourceFolders = listOf("sqldelight")
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).all {
+    kotlinOptions.apply {
+        freeCompilerArgs = listOf(
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        )
     }
 }
