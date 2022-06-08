@@ -20,9 +20,11 @@ object Versions {
     const val activityCompose = "1.4.0-beta01"
     const val lifecycleKtx = "2.4.0-rc01"
     const val lifecycleRuntimeKtx = lifecycleKtx
-    const val lifecycleViewmodelKtx = lifecycleKtx
+    const val lifecycleViewModelKtx = lifecycleKtx
 
     const val turbine = "0.8.0"
+
+    const val settings = "0.9"
 
 }
 
@@ -50,7 +52,7 @@ object Dependencies {
 
     object AndroidX {
         const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
-        const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewmodelKtx}"
+        const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewModelKtx}"
         const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
     }
 
@@ -85,5 +87,9 @@ object Dependencies {
 
     object Test {
         const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
+    }
+
+    object Settings {
+        const val multiplatform = "com.russhwolf:multiplatform-settings:${Versions.settings}"
     }
 }

@@ -2,9 +2,10 @@ package com.example.mtgkmm.core.di
 
 import com.example.mtgkmm.core.db.LocalMtgCard
 import com.example.mtgkmm.core.db.MtgKmmDatabase
+import com.russhwolf.settings.AppleSettings
 import com.squareup.sqldelight.EnumColumnAdapter
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
-import io.ktor.client.engine.darwin.*
+import io.ktor.client.engine.darwin.Darwin
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -19,5 +20,8 @@ actual fun platformModule() = module {
                 statAdapter = get(named(MTG_STAT_ADAPTER_NAME)),
             )
         )
+    }
+    single {
+        AppleSettings.Factory().create()
     }
 }

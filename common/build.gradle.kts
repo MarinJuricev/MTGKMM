@@ -50,6 +50,10 @@ kotlin {
                     api(core)
                     api(test)
                 }
+
+                with(Dependencies.Settings) {
+                    implementation(multiplatform)
+                }
             }
         }
         val commonTest by getting {
