@@ -26,6 +26,8 @@ object Versions {
 
     const val settings = "0.9"
 
+    const val gradleVersionsPlugin = "0.39.0"
+
 }
 
 object Dependencies {
@@ -83,6 +85,7 @@ object Dependencies {
 
     object Gradle {
         const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
+        const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
     }
 
     object Test {

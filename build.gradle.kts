@@ -14,6 +14,7 @@ buildscript {
 
         with(Dependencies.Gradle) {
             classpath(sqlDelight)
+            classpath(gradleVersionsPlugin)
         }
     }
 }
