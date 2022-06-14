@@ -1,6 +1,7 @@
 package com.example.mtgkmm.android.core.navigation
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.BottomNavigation
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -8,13 +9,17 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.mtgkmm.android.core.components.topbar.MtgTopBar
 import com.example.mtgkmm.android.core.components.topbar.TopBarViewModel
 import com.example.mtgkmm.android.core.components.topbar.model.TopBarEvent
+import com.example.mtgkmm.android.core.navigation.BottomNavigationDestination.Companion.bottomNavigationItems
+import com.example.mtgkmm.android.core.navigation.NavigationEvent.*
 import com.example.mtgkmm.android.feature.card.navigation.CardRootDestination
 import com.example.mtgkmm.android.feature.card.navigation.buildCardGraph
 import org.koin.androidx.compose.getViewModel
@@ -31,9 +36,9 @@ fun MtgNavigation(
     LaunchedEffect(key1 = navigator) {
         navigator.navigationEvent.collect { navigationEvent ->
             when (navigationEvent) {
-                NavigationEvent.NavigateUp -> navController.navigateUp()
-                NavigationEvent.NavigateBack -> navController.popBackStack()
-                is NavigationEvent.Destination -> navController.navigate(
+                NavigateUp -> navController.navigateUp()
+                NavigateBack -> navController.popBackStack()
+                is Destination -> navController.navigate(
                     route = navigationEvent.destination
                 )
             }
@@ -44,6 +49,20 @@ fun MtgNavigation(
         Scaffold(
             topBar = {
                 MtgTopBar(topBarViewModel.state.collectAsState().value)
+            },
+            bottomBar = {
+                BottomNavigation {
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
+                    val currentDestination = navBackStackEntry?.destination
+
+                    bottomNavigationItems.forEach { screen ->
+                        MtgBottomNavigationItem(
+                            screen,
+                            currentDestination,
+                            navController,
+                        )
+                    }
+                }
             }
         ) { paddingValues ->
             NavHost(

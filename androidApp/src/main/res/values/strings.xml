@@ -6,4 +6,5 @@
     <string name="recently_viewed">Recently viewed</string>
     <string name="image_fetch_error">Error while fetching image</string>
     <string name="image_empty_error">Empty state, investigate</string>
+    <string name="settings">Settings</string>
 </resources>
