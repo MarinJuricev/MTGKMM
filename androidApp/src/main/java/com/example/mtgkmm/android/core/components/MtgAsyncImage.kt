@@ -1,4 +1,4 @@
-package com.example.mtgkmm.android.core
+package com.example.mtgkmm.android.core.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

@@ -9,7 +9,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.mtgkmm.android.core.MtgAsyncImage
+import com.example.mtgkmm.android.core.components.topbar.MtgAsyncImage
 import com.example.mtgkmm.android.feature.card.model.UiMtgCard
 import com.example.mtgkmm.android.feature.card.search.model.SearchEvent
 import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.OnCardClick

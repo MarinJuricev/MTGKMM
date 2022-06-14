@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.example.mtgkmm.android.R
-import com.example.mtgkmm.android.core.MtgAsyncImage
+import com.example.mtgkmm.android.core.components.topbar.MtgAsyncImage
 import com.example.mtgkmm.android.feature.card.model.UiMtgCard
 import com.example.mtgkmm.android.feature.card.search.model.SearchEvent
 
