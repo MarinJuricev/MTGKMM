@@ -22,6 +22,7 @@ import com.example.mtgkmm.android.core.navigation.BottomNavigationDestination.Co
 import com.example.mtgkmm.android.core.navigation.NavigationEvent.*
 import com.example.mtgkmm.android.feature.card.navigation.CardRootDestination
 import com.example.mtgkmm.android.feature.card.navigation.buildCardGraph
+import com.example.mtgkmm.android.feature.settings.navigation.buildSettingsGraph
 import org.koin.androidx.compose.getViewModel
 
 val LocalTopBarEvents: ProvidableCompositionLocal<((TopBarEvent) -> Unit)?> =
@@ -71,6 +72,7 @@ fun MtgNavigation(
                 modifier = Modifier.padding(paddingValues)
             ) {
                 buildCardGraph()
+                buildSettingsGraph()
             }
         }
     }
