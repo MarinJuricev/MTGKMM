@@ -2,6 +2,7 @@ package com.example.mtgkmm.android.feature.card.search.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.example.mtgkmm.android.core.BaseViewModel
+import com.example.mtgkmm.android.core.TIMEOUT_DELAY
 import com.example.mtgkmm.android.core.navigation.NavigationEvent
 import com.example.mtgkmm.android.core.navigation.NavigationEvent.*
 import com.example.mtgkmm.android.core.navigation.Navigator
@@ -68,7 +69,7 @@ class SearchViewModel(
         )
     }.stateIn(
         viewModelScope,
-        SharingStarted.WhileSubscribed(5_000),
+        SharingStarted.WhileSubscribed(TIMEOUT_DELAY),
         initialValue = SearchState(),
     )
 
