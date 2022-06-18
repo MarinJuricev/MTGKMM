@@ -5,7 +5,7 @@ import com.example.mtgkmm.android.core.navigation.BottomNavigationDestination
 
 object SearchDestination : BottomNavigationDestination<Nothing>(
     resourceId = R.string.search,
-    iconId = R.drawable.ic_100tb,
+    iconId = R.drawable.search,
 ) {
 
     override fun route(): String = "search"
