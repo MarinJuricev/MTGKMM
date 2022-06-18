@@ -1,9 +1,10 @@
 package com.example.mtgkmm.android.feature.settings.navigation
 
-import androidx.compose.material.Text
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.example.mtgkmm.android.feature.settings.SettingsScreen
+import org.koin.androidx.compose.getViewModel
 
 fun NavGraphBuilder.buildSettingsGraph() {
     navigation(
@@ -11,7 +12,9 @@ fun NavGraphBuilder.buildSettingsGraph() {
         route = SettingsRootDestination.route()
     ) {
         composable(SettingsDestination.route()) { navBackStackEntry ->
-            Text("Settings")
+            SettingsScreen(
+                viewModel = getViewModel(owner = navBackStackEntry)
+            )
         }
     }
 }
