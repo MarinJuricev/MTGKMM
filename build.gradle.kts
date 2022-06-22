@@ -11,15 +11,11 @@ buildscript {
         gradlePluginPortal()
         google()
         mavenCentral()
-//        maven {
-//            url = "https://plugins.gradle.org/m2/"
-//        }
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
         classpath("com.android.tools.build:gradle:$gradleVersion")
-//        classpath("com.diffplug.spotless:spotless-plugin-gradle:6.7.2")
 
         with(Dependencies.Gradle) {
             classpath(sqlDelight)
@@ -28,15 +24,15 @@ buildscript {
     }
 }
 
-//spotless {
-//    kotlin {
-//        // version, setUseExperimental, userData and editorConfigOverride are all optional
-//        ktlint("0.45.2")
-//            .setUseExperimental(true)
-//            .userData(mapOf("android" to "true"))
-//            .editorConfigOverride(mapOf("indent_size" to 2))
-//    }
-//}
+spotless {
+    kotlin {
+        // version, setUseExperimental, userData and editorConfigOverride are all optional
+        ktlint("0.45.2")
+            .setUseExperimental(true)
+            .userData(mapOf("android" to "true"))
+            .editorConfigOverride(mapOf("indent_size" to 4))
+    }
+}
 
 allprojects {
     repositories {
@@ -44,7 +40,3 @@ allprojects {
         mavenCentral()
     }
 }
-
-//tasks.register("clean", Delete::class) {
-//    delete(rootProject.buildDir)
-//}
