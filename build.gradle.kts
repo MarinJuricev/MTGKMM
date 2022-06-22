@@ -24,13 +24,17 @@ buildscript {
     }
 }
 
-spotless {
+configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {
         // version, setUseExperimental, userData and editorConfigOverride are all optional
         ktlint("0.45.2")
             .setUseExperimental(true)
             .userData(mapOf("android" to "true"))
             .editorConfigOverride(mapOf("indent_size" to 4))
+    }
+    kotlinGradle {
+        target("*.gradle.kts") // default target for kotlinGradle
+        ktlint() // or ktfmt() or prettier()
     }
 }
 
