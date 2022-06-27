@@ -35,7 +35,6 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlinGradle {
         target("*.gradle.kts") // default target for kotlinGradle
         ktlint() // or ktfmt() or prettier()
-        prettier()
     }
 }
 
