@@ -11,4 +11,8 @@ class Navigator {
     suspend fun emitDestination(event: NavigationEvent) {
         _navigationEvent.send(event)
     }
+
+    fun emitDestinationSync(event: NavigationEvent) {
+        _navigationEvent.trySend(event)
+    }
 }
