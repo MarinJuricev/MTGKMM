@@ -6,6 +6,8 @@ import com.example.mtgkmm.android.feature.settings.model.SettingsEvent
 class SettingsViewModel : BaseViewModel<SettingsEvent>() {
 
     override fun onEvent(event: SettingsEvent) {
-        TODO("Not yet implemented")
+        when(event) {
+
+        }
     }
 }
