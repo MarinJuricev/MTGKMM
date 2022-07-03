@@ -36,7 +36,7 @@ buildscript {
 //        target("*.gradle.kts") // default target for kotlinGradle
 //        ktlint() // or ktfmt() or prettier()
 //    }
-//}
+//}q
 
 allprojects {
     repositories {
@@ -50,9 +50,11 @@ subprojects {
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         kotlin {
             target ("**/*.kt")
-            ktlint().userData(mapOf("indent_size" to "2", "continuation_indent_size" to "2"))
             ktfmt().googleStyle()
-            licenseHeaderFile("${project.rootProject.projectDir}/license-header.txt")
+            ktlint("0.45.2")
+                .setUseExperimental(true)
+                .userData(mapOf("android" to "true"))
+                .editorConfigOverride(mapOf("indent_size" to 4))
         }
 
         kotlinGradle {
