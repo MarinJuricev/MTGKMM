@@ -5,15 +5,8 @@ import com.example.mtgkmm.feature.search.domain.model.Pagination
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class UiPagination(
-    val totalCards: Int,
-    val hasMore: Boolean,
-    val nextPage: String,
-) : Parcelable
+data class UiPagination(val totalCards: Int, val hasMore: Boolean, val nextPage: String) :
+    Parcelable
 
 fun Pagination.toUi(): UiPagination =
-    UiPagination(
-        totalCards = totalCards,
-        hasMore = hasMore,
-        nextPage = nextPage,
-    )
+    UiPagination(totalCards = totalCards, hasMore = hasMore, nextPage = nextPage)

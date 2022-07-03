@@ -6,17 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @kotlinx.serialization.Serializable
-data class UiMtgStat(
-    val power: Int,
-    val toughness: Int,
-) : Parcelable
+data class UiMtgStat(val power: Int, val toughness: Int) : Parcelable
 
-fun MtgStat.toUi(): UiMtgStat = UiMtgStat(
-    power = power,
-    toughness = toughness,
-)
+fun MtgStat.toUi(): UiMtgStat = UiMtgStat(power = power, toughness = toughness)
 
-fun UiMtgStat.toDomain(): MtgStat = MtgStat(
-    power = power,
-    toughness = toughness,
-)
+fun UiMtgStat.toDomain(): MtgStat = MtgStat(power = power, toughness = toughness)

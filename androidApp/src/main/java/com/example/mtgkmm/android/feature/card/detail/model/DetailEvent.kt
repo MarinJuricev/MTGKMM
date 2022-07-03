@@ -4,5 +4,4 @@ import com.example.mtgkmm.android.feature.card.model.UiMtgCard
 
 sealed interface DetailEvent {
     data class OnDetailOpened(val mtgCard: UiMtgCard) : DetailEvent
-
 }

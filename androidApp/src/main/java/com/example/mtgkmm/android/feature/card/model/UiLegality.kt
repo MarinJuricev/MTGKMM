@@ -26,4 +26,3 @@ sealed class UiLegality(open val legalityType: UiLegalityType) : Parcelable {
     data class OldSchool(override val legalityType: UiLegalityType) : UiLegality(legalityType)
     data class PreModern(override val legalityType: UiLegalityType) : UiLegality(legalityType)
 }
-

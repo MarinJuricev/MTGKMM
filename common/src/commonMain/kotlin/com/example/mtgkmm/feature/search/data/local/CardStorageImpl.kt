@@ -11,29 +11,26 @@ import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
 
-class CardStorageImpl(
-    val localMtgCardQueries: LocalMtgCardQueries,
-) : CardStorage {
+class CardStorageImpl(val localMtgCardQueries: LocalMtgCardQueries) : CardStorage {
 
     override suspend fun saveCard(card: MtgCard): Either<Failure, Unit> {
         return with(card) {
-            localMtgCardQueries.insertItem(
-                name,
-                manaCost,
-                creature,
-                url,
-                keywords,
-                stat.toLocal(),
-                oracleText,
-                legalities.toString(),
-                artist,
-            ).buildRight()
+            localMtgCardQueries
+                .insertItem(
+                    name,
+                    manaCost,
+                    creature,
+                    url,
+                    keywords,
+                    stat.toLocal(),
+                    oracleText,
+                    legalities.toString(),
+                    artist
+                )
+                .buildRight()
         }
     }
 
     override fun observeRecentlyViewedCards(): Flow<List<LocalMtgCard>> =
-        localMtgCardQueries
-            .selectAll()
-            .asFlow()
-            .mapToList()
+        localMtgCardQueries.selectAll().asFlow().mapToList()
 }

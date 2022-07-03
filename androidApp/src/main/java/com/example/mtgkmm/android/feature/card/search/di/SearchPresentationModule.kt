@@ -6,10 +6,6 @@ import org.koin.dsl.module
 
 val searchPresentationModule = module {
     viewModel {
-        SearchViewModel(
-            getCards = get(),
-            observeRecentlyViewedCards = get(),
-            navigator = get(),
-        )
+        SearchViewModel(getCards = get(), observeRecentlyViewedCards = get(), navigator = get())
     }
 }

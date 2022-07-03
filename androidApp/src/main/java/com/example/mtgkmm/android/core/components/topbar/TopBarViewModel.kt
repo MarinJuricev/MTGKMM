@@ -4,21 +4,20 @@ import androidx.lifecycle.viewModelScope
 import com.example.mtgkmm.android.core.BaseViewModel
 import com.example.mtgkmm.android.core.components.topbar.model.TopBarEvent
 import com.example.mtgkmm.android.core.components.topbar.model.TopBarEvent.OnTopBarChange
-import com.example.mtgkmm.android.feature.card.search.model.SearchState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
 class TopBarViewModel : BaseViewModel<TopBarEvent>() {
 
     private val _state = MutableStateFlow(TopBarViewState())
-    val state = _state.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(5_000),
-        initialValue = TopBarViewState(),
-    )
+    val state =
+        _state.stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5_000),
+            initialValue = TopBarViewState()
+        )
 
     override fun onEvent(event: TopBarEvent) {
         when (event) {

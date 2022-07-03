@@ -15,19 +15,13 @@ import com.example.mtgkmm.android.feature.card.search.model.SearchEvent
 import com.example.mtgkmm.android.feature.card.search.model.SearchEvent.OnCardClick
 
 @Composable
-fun MtgCardGrid(
-    cards: List<UiMtgCard>,
-    onEvent: (SearchEvent) -> Unit,
-) {
+fun MtgCardGrid(cards: List<UiMtgCard>, onEvent: (SearchEvent) -> Unit) {
     LazyVerticalGrid(columns = GridCells.Fixed(GRID_COUNT)) {
         items(cards, key = { mtgCard -> mtgCard.name }) { mtgCard ->
             MtgAsyncImage(
-                modifier = Modifier
-                    .size(256.dp)
-                    .padding(8.dp)
-                    .clickable { onEvent(OnCardClick(mtgCard)) },
+                modifier = Modifier.size(256.dp).padding(8.dp).clickable { onEvent(OnCardClick(mtgCard)) },
                 url = mtgCard.url,
-                contentDescription = mtgCard.name,
+                contentDescription = mtgCard.name
             )
         }
     }

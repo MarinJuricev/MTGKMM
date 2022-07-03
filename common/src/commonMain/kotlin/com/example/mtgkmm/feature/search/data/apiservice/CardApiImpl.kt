@@ -10,18 +10,16 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.http.appendPathSegments
 
-class CardApiImpl(
-    private val client: HttpClient,
-) : CardApi {
+class CardApiImpl(private val client: HttpClient) : CardApi {
 
-    override suspend fun getCard(
-        cardName: String
-    ): Either<Failure, NetworkCardsResponse> {
+    override suspend fun getCard(cardName: String): Either<Failure, NetworkCardsResponse> {
         return client.apiCall { httpClient ->
-            httpClient.get {
-                url.appendPathSegments(CARDS_END_POINT)
-                parameter(CARD_NAME_QUERY_PARAMETER, cardName)
-            }.body()
+            httpClient
+                .get {
+                    url.appendPathSegments(CARDS_END_POINT)
+                    parameter(CARD_NAME_QUERY_PARAMETER, cardName)
+                }
+                .body()
         }
     }
 }

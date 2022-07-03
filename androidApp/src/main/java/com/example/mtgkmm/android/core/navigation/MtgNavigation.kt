@@ -19,14 +19,17 @@ import com.example.mtgkmm.android.core.components.topbar.MtgTopBar
 import com.example.mtgkmm.android.core.components.topbar.TopBarViewModel
 import com.example.mtgkmm.android.core.components.topbar.model.TopBarEvent
 import com.example.mtgkmm.android.core.navigation.BottomNavigationDestination.Companion.bottomNavigationItems
-import com.example.mtgkmm.android.core.navigation.NavigationEvent.*
+import com.example.mtgkmm.android.core.navigation.NavigationEvent.Destination
+import com.example.mtgkmm.android.core.navigation.NavigationEvent.NavigateBack
+import com.example.mtgkmm.android.core.navigation.NavigationEvent.NavigateUp
 import com.example.mtgkmm.android.feature.card.navigation.CardRootDestination
 import com.example.mtgkmm.android.feature.card.navigation.buildCardGraph
 import com.example.mtgkmm.android.feature.settings.navigation.buildSettingsGraph
 import org.koin.androidx.compose.getViewModel
 
-val LocalTopBarEvents: ProvidableCompositionLocal<((TopBarEvent) -> Unit)?> =
-    compositionLocalOf { null }
+val LocalTopBarEvents: ProvidableCompositionLocal<((TopBarEvent) -> Unit)?> = compositionLocalOf {
+    null
+}
 
 @Composable
 fun MtgNavigation(
@@ -39,29 +42,21 @@ fun MtgNavigation(
             when (navigationEvent) {
                 NavigateUp -> navController.navigateUp()
                 NavigateBack -> navController.popBackStack()
-                is Destination -> navController.navigate(
-                    route = navigationEvent.destination
-                )
+                is Destination -> navController.navigate(route = navigationEvent.destination)
             }
         }
     }
 
     CompositionLocalProvider(LocalTopBarEvents provides topBarViewModel::onEvent) {
         Scaffold(
-            topBar = {
-                MtgTopBar(topBarViewModel.state.collectAsState().value)
-            },
+            topBar = { MtgTopBar(topBarViewModel.state.collectAsState().value) },
             bottomBar = {
                 BottomNavigation {
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
                     val currentDestination = navBackStackEntry?.destination
 
                     bottomNavigationItems.forEach { screen ->
-                        MtgBottomNavigationItem(
-                            screen,
-                            currentDestination,
-                            navController,
-                        )
+                        MtgBottomNavigationItem(screen, currentDestination, navController)
                     }
                 }
             }

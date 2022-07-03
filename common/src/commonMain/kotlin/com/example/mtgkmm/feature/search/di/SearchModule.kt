@@ -13,44 +13,17 @@ import com.example.mtgkmm.feature.search.domain.usecase.SaveCard
 import org.koin.dsl.module
 
 val searchModule = module {
-    single {
-        get<MtgKmmDatabase>().localMtgCardQueries
-    }
+    single { get<MtgKmmDatabase>().localMtgCardQueries }
 
-    factory<CardApi> {
-        CardApiImpl(
-            client = get(),
-        )
-    }
+    factory<CardApi> { CardApiImpl(client = get()) }
 
-    factory<CardStorage> {
-        CardStorageImpl(
-            localMtgCardQueries = get(),
-        )
-    }
+    factory<CardStorage> { CardStorageImpl(localMtgCardQueries = get()) }
 
-    factory<CardRepository> {
-        CardRepositoryImpl(
-            cardApi = get(),
-            cardStorage = get(),
-        )
-    }
+    factory<CardRepository> { CardRepositoryImpl(cardApi = get(), cardStorage = get()) }
 
-    factory {
-        GetCards(
-            cardRepository = get(),
-        )
-    }
+    factory { GetCards(cardRepository = get()) }
 
-    factory {
-        SaveCard(
-            cardRepository = get(),
-        )
-    }
+    factory { SaveCard(cardRepository = get()) }
 
-    factory {
-        ObserveRecentlyViewedCards(
-            cardRepository = get(),
-        )
-    }
+    factory { ObserveRecentlyViewedCards(cardRepository = get()) }
 }

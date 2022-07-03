@@ -6,25 +6,19 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
-private val DarkColorPalette = darkColors(
-    primary = purpleDark,
-    primaryVariant = purple,
-    secondary = purpleLight,
+private val DarkColorPalette =
+    darkColors(primary = purpleDark, primaryVariant = purple, secondary = purpleLight)
 
-)
-
-private val LightColorPalette = lightColors(
-    primary = purpleDark,
-    primaryVariant = purple,
-    secondary = purpleLight,
-    background = white,
-)
+private val LightColorPalette =
+    lightColors(
+        primary = purpleDark,
+        primaryVariant = purple,
+        secondary = purpleLight,
+        background = white
+    )
 
 @Composable
-fun MtgTheme(
-    isDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
+fun MtgTheme(isDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     MaterialTheme(
         colors = LightColorPalette,
         typography = Typography,

@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <string name="search">Search</string>
     <string name="shrug_emoji">¯\\_(ツ)_/¯</string>
-    <string name="empty_search">No items found, please enter something in the search</string>
+    <string
+        name="empty_search"
+    >No items found, please enter something in the search</string>
     <string name="recently_viewed">Recently viewed</string>
     <string name="image_fetch_error">Error while fetching image</string>
     <string name="image_empty_error">Empty state, investigate</string>

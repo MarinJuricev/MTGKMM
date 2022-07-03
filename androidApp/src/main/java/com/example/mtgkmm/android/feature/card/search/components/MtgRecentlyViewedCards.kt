@@ -23,28 +23,24 @@ import com.example.mtgkmm.android.feature.card.search.model.SearchEvent
 fun MtgRecentlyViewedCards(
     recentlyViewedCards: List<UiMtgCard>,
     onEvent: (SearchEvent) -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier,
-    ) {
+    Column(modifier = modifier) {
         Text(
             modifier = Modifier.padding(start = dimensionResource(id = R.dimen.margin_small)),
             text = stringResource(id = R.string.recently_viewed),
             style = MaterialTheme.typography.h6
         )
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.margin_small)))
-        LazyRow(
-            modifier = modifier,
-        ) {
+        LazyRow(modifier = modifier) {
             items(recentlyViewedCards, key = { mtgCard -> mtgCard.name }) { mtgCard ->
                 MtgAsyncImage(
-                    modifier = Modifier
-                        .wrapContentSize()
+                    modifier =
+                    Modifier.wrapContentSize()
                         .padding(dimensionResource(id = R.dimen.margin_small))
                         .clickable { onEvent(SearchEvent.OnCardClick(mtgCard)) },
                     url = mtgCard.url,
-                    contentDescription = mtgCard.name,
+                    contentDescription = mtgCard.name
                 )
             }
         }

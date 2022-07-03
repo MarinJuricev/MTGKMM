@@ -27,11 +27,7 @@ object CardDetailDestination : NavigationDestination<UiMtgCard>, KoinComponent {
         "$CARD_DETAIL_ROOT/${Uri.encode(serializer.encodeToString(data))}"
 
     override val arguments: List<NamedNavArgument>
-        get() = listOf(
-            navArgument(CARD_DETAIL_PARAM) {
-                type = UiMtgCardParamType()
-            }
-        )
+        get() = listOf(navArgument(CARD_DETAIL_PARAM) { type = UiMtgCardParamType() })
 
     class UiMtgCardParamType : NavigationDestination.ParamType<UiMtgCard>() {
         override fun get(bundle: Bundle, key: String): UiMtgCard? {
@@ -47,4 +43,3 @@ object CardDetailDestination : NavigationDestination<UiMtgCard>, KoinComponent {
         }
     }
 }
-

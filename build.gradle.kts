@@ -54,7 +54,12 @@ subprojects {
             ktlint("0.45.2")
                 .setUseExperimental(true)
                 .userData(mapOf("android" to "true"))
-                .editorConfigOverride(mapOf("indent_size" to 4))
+                .editorConfigOverride(
+                    mapOf(
+                        "indent_size" to 4,
+                        "max_line_length" to 120,
+                    )
+                )
         }
 
         kotlinGradle {

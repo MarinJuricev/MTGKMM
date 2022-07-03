@@ -14,14 +14,13 @@ actual fun platformModule() = module {
     single {
         MtgKmmDatabase(
             NativeSqliteDriver(MtgKmmDatabase.Schema, "mtgkmm.db"),
-            localMtgCardAdapter = LocalMtgCard.Adapter(
+            localMtgCardAdapter =
+            LocalMtgCard.Adapter(
                 creatureAdapter = EnumColumnAdapter(),
                 keywordsAdapter = get(named(MTG_KEYWORD_ADAPTER_NAME)),
-                statAdapter = get(named(MTG_STAT_ADAPTER_NAME)),
+                statAdapter = get(named(MTG_STAT_ADAPTER_NAME))
             )
         )
     }
-    single {
-        AppleSettings.Factory().create()
-    }
+    single { AppleSettings.Factory().create() }
 }

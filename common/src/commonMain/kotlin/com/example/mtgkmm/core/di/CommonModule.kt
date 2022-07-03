@@ -3,12 +3,15 @@ package com.example.mtgkmm.core.di
 import com.example.mtgkmm.feature.search.data.model.local.LocalMtgStat
 import com.example.mtgkmm.feature.search.domain.model.MtgKeyword
 import com.squareup.sqldelight.ColumnAdapter
-import io.ktor.client.*
-import io.ktor.client.engine.*
-import io.ktor.client.plugins.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.logging.*
-import io.ktor.serialization.kotlinx.json.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.DEFAULT
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -24,9 +27,7 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
         }
     }
 
-    single(named(BASE_URL)) {
-        "https://api.scryfall.com/"
-    }
+    single(named(BASE_URL)) { "https://api.scryfall.com/" }
 
     single {
         createHttpClient(
@@ -37,9 +38,7 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
         )
     }
 
-    single<ColumnAdapter<List<MtgKeyword>, String>>(
-        named(MTG_KEYWORD_ADAPTER_NAME)
-    ) {
+    single<ColumnAdapter<List<MtgKeyword>, String>>(named(MTG_KEYWORD_ADAPTER_NAME)) {
         val serializer: Json = get()
 
         object : ColumnAdapter<List<MtgKeyword>, String> {
@@ -50,46 +49,38 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
                     serializer.decodeFromString<List<MtgKeyword>>(databaseValue)
                 }
 
-            override fun encode(value: List<MtgKeyword>) =
-                serializer.encodeToString(value)
+            override fun encode(value: List<MtgKeyword>) = serializer.encodeToString(value)
         }
     }
 
-    single<ColumnAdapter<LocalMtgStat, String>>(
-        named(MTG_STAT_ADAPTER_NAME)
-    ) {
+    single<ColumnAdapter<LocalMtgStat, String>>(named(MTG_STAT_ADAPTER_NAME)) {
         val serializer: Json = get()
 
         object : ColumnAdapter<LocalMtgStat, String> {
             override fun decode(databaseValue: String) =
                 serializer.decodeFromString<LocalMtgStat>(databaseValue)
 
-            override fun encode(value: LocalMtgStat) =
-                serializer.encodeToString(value)
+            override fun encode(value: LocalMtgStat) = serializer.encodeToString(value)
         }
     }
-
 }
 
 fun createHttpClient(
     httpClientEngine: HttpClientEngine,
     json: Json,
     enableNetworkLogs: Boolean,
-    baseUrl: String,
-) = HttpClient(httpClientEngine) {
-    install(ContentNegotiation) {
-        json(json)
-    }
-    if (enableNetworkLogs) {
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.INFO
+    baseUrl: String
+) =
+    HttpClient(httpClientEngine) {
+        install(ContentNegotiation) { json(json) }
+        if (enableNetworkLogs) {
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.INFO
+            }
         }
+        defaultRequest { url(baseUrl) }
     }
-    defaultRequest {
-        url(baseUrl)
-    }
-}
 
 private const val BASE_URL = "baseUrl"
 const val MTG_KEYWORD_ADAPTER_NAME = "mtgKeywordAdapterName"

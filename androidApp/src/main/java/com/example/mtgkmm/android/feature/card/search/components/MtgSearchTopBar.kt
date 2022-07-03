@@ -18,30 +18,20 @@ import com.example.mtgkmm.android.feature.card.search.model.SearchEvent
 import com.example.mtgkmm.android.feature.card.search.model.SearchState
 
 @Composable
-fun MtgSearchTopBar(
-    state: SearchState,
-    onEvent: (SearchEvent) -> Unit,
-) {
+fun MtgSearchTopBar(state: SearchState, onEvent: (SearchEvent) -> Unit) {
     TopAppBar {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.CenterStart,
-        ) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.CenterStart) {
             TextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .scale(scaleY = 0.9F, scaleX = 1F),
+                modifier = Modifier.fillMaxWidth().scale(scaleY = 0.9F, scaleX = 1F),
                 value = state.currentSearch,
                 label = { Text(text = stringResource(id = R.string.search)) },
-                colors = TextFieldDefaults.outlinedTextFieldColors(
+                colors =
+                TextFieldDefaults.outlinedTextFieldColors(
                     backgroundColor = MaterialTheme.colors.surface,
-                    textColor = MaterialTheme.colors.primary,
+                    textColor = MaterialTheme.colors.primary
                 ),
-                onValueChange = { newSearch ->
-                    onEvent(SearchEvent.OnSearchUpdate(newSearch))
-                }
+                onValueChange = { newSearch -> onEvent(SearchEvent.OnSearchUpdate(newSearch)) }
             )
         }
     }
 }
-

@@ -9,5 +9,5 @@ data class MtgCard(
     val stat: MtgStat,
     val oracleText: String,
     val legalities: List<Legality>,
-    val artist: String,
+    val artist: String
 )

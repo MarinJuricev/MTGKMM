@@ -8,5 +8,5 @@ data class SearchState(
     val currentSearch: String = "",
     val error: String? = null,
     val data: UiMtgCardsData? = null,
-    val recentlyViewedCards: List<UiMtgCard> = emptyList(),
+    val recentlyViewedCards: List<UiMtgCard> = emptyList()
 )

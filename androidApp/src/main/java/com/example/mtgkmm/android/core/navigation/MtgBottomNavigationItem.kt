@@ -16,15 +16,10 @@ import androidx.navigation.NavHostController
 fun <T> RowScope.MtgBottomNavigationItem(
     screen: BottomNavigationDestination<T>,
     currentDestination: NavDestination?,
-    navController: NavHostController,
+    navController: NavHostController
 ) {
     BottomNavigationItem(
-        icon = {
-            Icon(
-                painter = painterResource(screen.iconId),
-                contentDescription = screen.route()
-            )
-        },
+        icon = { Icon(painter = painterResource(screen.iconId), contentDescription = screen.route()) },
         label = { Text(stringResource(id = screen.resourceId)) },
         selected = currentDestination?.hierarchy?.any { it.route == screen.route() } == true,
         alwaysShowLabel = false,
@@ -33,9 +28,7 @@ fun <T> RowScope.MtgBottomNavigationItem(
                 // Pop up to the start destination of the graph to
                 // avoid building up a large stack of destinations
                 // on the back stack as users select items
-                popUpTo(navController.graph.findStartDestination().id) {
-                    saveState = true
-                }
+                popUpTo(navController.graph.findStartDestination().id) { saveState = true }
                 // Avoid multiple copies of the same destination when
                 // reselecting the same item
                 launchSingleTop = true

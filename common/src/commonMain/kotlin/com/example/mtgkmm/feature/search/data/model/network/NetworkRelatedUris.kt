@@ -8,8 +8,6 @@ data class NetworkRelatedUris(
     val edhrec: String?,
     val gatherer: String?,
     val mtgtop8: String?,
-    @SerialName("tcgplayer_infinite_articles")
-    val tcgPlayerInfiniteArticles: String?,
-    @SerialName("tcgplayer_infinite_decks")
-    val tcgPlayerInfiniteDecks: String?
+    @SerialName("tcgplayer_infinite_articles") val tcgPlayerInfiniteArticles: String?,
+    @SerialName("tcgplayer_infinite_decks") val tcgPlayerInfiniteDecks: String?
 )

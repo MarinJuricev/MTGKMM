@@ -1,4 +1,4 @@
-package com.example.mtgkmm.android.core.components.topbar
+package com.example.mtgkmm.android.core.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,15 +23,16 @@ import com.example.mtgkmm.android.R
 fun MtgErrorScreen(
     errorMessage: String,
     modifier: Modifier = Modifier,
-    shrugTextStyle: TextStyle = MaterialTheme.typography.h2,
+    shrugTextStyle: TextStyle = MaterialTheme.typography.h2
 ) {
     Card(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxSize()
             .wrapContentSize()
             .padding(horizontal = dimensionResource(id = R.dimen.margin_big)),
         elevation = 4.dp,
-        backgroundColor = MaterialTheme.colors.primary,
+        backgroundColor = MaterialTheme.colors.primary
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -41,13 +42,13 @@ fun MtgErrorScreen(
             Text(
                 text = stringResource(id = R.string.shrug_emoji),
                 style = shrugTextStyle,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen.margin_medium)))
             Text(
                 text = errorMessage,
                 style = MaterialTheme.typography.body1,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Center
             )
         }
     }

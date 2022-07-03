@@ -15,12 +15,7 @@ class MtgKmmApplication : Application() {
 
         initKoin {
             androidContext(this@MtgKmmApplication)
-            modules(
-                coreModule,
-                searchPresentationModule,
-                detailPresentationModule,
-                settingsModule,
-            )
+            modules(coreModule, searchPresentationModule, detailPresentationModule, settingsModule)
         }
     }
 }

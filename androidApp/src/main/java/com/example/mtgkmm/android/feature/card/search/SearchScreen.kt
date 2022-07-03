@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.mtgkmm.android.R
-import com.example.mtgkmm.android.core.components.topbar.MtgErrorScreen
+import com.example.mtgkmm.android.core.components.MtgErrorScreen
 import com.example.mtgkmm.android.core.components.topbar.TopBarViewState
 import com.example.mtgkmm.android.core.components.topbar.model.TopBarEvent.OnTopBarChange
 import com.example.mtgkmm.android.core.navigation.LocalTopBarEvents
@@ -22,31 +22,22 @@ import com.example.mtgkmm.android.feature.card.search.components.MtgSearchTopBar
 import com.example.mtgkmm.android.feature.card.search.viewmodel.SearchViewModel
 
 @Composable
-fun SearchScreen(
-    viewModel: SearchViewModel,
-) {
+fun SearchScreen(viewModel: SearchViewModel) {
     val topBarEvent = LocalTopBarEvents.current
     val state by viewModel.state.collectAsState()
 
     LaunchedEffect(key1 = topBarEvent) {
-        topBarEvent?.invoke(OnTopBarChange(TopBarViewState(isVisible = true) {
-            MtgSearchTopBar(state, viewModel::onEvent)
-        }))
+        topBarEvent?.invoke(
+            OnTopBarChange(
+                TopBarViewState(isVisible = true) { MtgSearchTopBar(state, viewModel::onEvent) }
+            )
+        )
     }
     Column {
-        AnimatedVisibility(
-            visible = state.isLoading,
-        ) {
-            LinearProgressIndicator(
-                modifier = Modifier.fillMaxWidth(),
-            )
+        AnimatedVisibility(visible = state.isLoading) {
+            LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
         }
-        state.data?.let { data ->
-            MtgCardGrid(
-                cards = data.cards,
-                onEvent = viewModel::onEvent,
-            )
-        }
+        state.data?.let { data -> MtgCardGrid(cards = data.cards, onEvent = viewModel::onEvent) }
 
         if (state.data?.cards.isNullOrEmpty()) {
             MtgErrorScreen(

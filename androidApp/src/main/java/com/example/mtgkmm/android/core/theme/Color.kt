@@ -9,5 +9,4 @@ val purpleLight = Color(0xFF651fff)
 val purple = Color(0xFF3f1dcb)
 val white = Color(0xFFFFFFFF)
 
-@Composable
-fun MaterialTheme.textColor() = if (colors.isLight) Color.LightGray else Color.White
+@Composable fun MaterialTheme.textColor() = if (colors.isLight) Color.LightGray else Color.White

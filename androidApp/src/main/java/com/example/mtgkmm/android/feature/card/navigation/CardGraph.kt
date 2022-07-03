@@ -10,27 +10,17 @@ import com.example.mtgkmm.android.feature.card.search.SearchScreen
 import org.koin.androidx.compose.getViewModel
 
 fun NavGraphBuilder.buildCardGraph() {
-    navigation(
-        startDestination = SearchDestination.route(),
-        route = CardRootDestination.route()
-    ) {
+    navigation(startDestination = SearchDestination.route(), route = CardRootDestination.route()) {
         composable(SearchDestination.route()) { navBackStackEntry ->
-            SearchScreen(
-                viewModel = getViewModel(owner = navBackStackEntry)
-            )
+            SearchScreen(viewModel = getViewModel(owner = navBackStackEntry))
         }
-        composable(
-            CardDetailDestination.route(),
-            CardDetailDestination.arguments,
-        ) { navBackStackEntry ->
-            val mtgCard = navBackStackEntry.arguments?.getParcelable<UiMtgCard>(CARD_DETAIL_PARAM)
-                ?: error("$CARD_DETAIL_PARAM was not provided")
+        composable(CardDetailDestination.route(), CardDetailDestination.arguments) { navBackStackEntry
+            ->
+            val mtgCard =
+                navBackStackEntry.arguments?.getParcelable<UiMtgCard>(CARD_DETAIL_PARAM)
+                    ?: error("$CARD_DETAIL_PARAM was not provided")
 
-            DetailScreen(
-                viewModel = getViewModel(owner = navBackStackEntry),
-                mtgCard = mtgCard
-            )
+            DetailScreen(viewModel = getViewModel(owner = navBackStackEntry), mtgCard = mtgCard)
         }
     }
 }
-

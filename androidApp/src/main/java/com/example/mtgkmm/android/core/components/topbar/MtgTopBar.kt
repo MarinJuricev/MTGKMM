@@ -11,20 +11,12 @@ import androidx.compose.ui.unit.IntSize
 
 @Composable
 fun MtgTopBar(state: TopBarViewState) {
-    val topBarSpring: FiniteAnimationSpec<IntSize> = spring(
-        dampingRatio = Spring.DampingRatioLowBouncy,
-        stiffness = Spring.StiffnessVeryLow,
-    )
+    val topBarSpring: FiniteAnimationSpec<IntSize> =
+        spring(dampingRatio = Spring.DampingRatioLowBouncy, stiffness = Spring.StiffnessVeryLow)
 
     AnimatedVisibility(
         visible = state.isVisible,
-        enter = expandVertically(
-            animationSpec = topBarSpring
-        ),
-        exit = shrinkVertically(
-            animationSpec = topBarSpring
-        ),
-    ) {
-        state.content?.let { content -> content() }
-    }
+        enter = expandVertically(animationSpec = topBarSpring),
+        exit = shrinkVertically(animationSpec = topBarSpring)
+    ) { state.content?.let { content -> content() } }
 }

@@ -9,9 +9,7 @@ import com.example.mtgkmm.android.feature.card.model.toDomain
 import com.example.mtgkmm.feature.search.domain.usecase.SaveCard
 import kotlinx.coroutines.launch
 
-class DetailViewModel(
-    private val saveCard: SaveCard,
-) : BaseViewModel<DetailEvent>() {
+class DetailViewModel(private val saveCard: SaveCard) : BaseViewModel<DetailEvent>() {
 
     override fun onEvent(event: DetailEvent) {
         when (event) {
@@ -19,7 +17,6 @@ class DetailViewModel(
         }
     }
 
-    private fun handleDetailOpened(mtgCard: UiMtgCard) = viewModelScope.launch {
-        saveCard(mtgCard.toDomain())
-    }
+    private fun handleDetailOpened(mtgCard: UiMtgCard) =
+        viewModelScope.launch { saveCard(mtgCard.toDomain()) }
 }

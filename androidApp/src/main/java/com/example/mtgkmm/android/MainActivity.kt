@@ -15,12 +15,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContent {
-            MtgTheme {
-                MtgNavigation(
-                    navigator = navigator,
-                )
-            }
-        }
+        setContent { MtgTheme { MtgNavigation(navigator = navigator) } }
     }
 }

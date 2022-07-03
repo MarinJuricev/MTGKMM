@@ -12,9 +12,7 @@ fun NavGraphBuilder.buildSettingsGraph() {
         route = SettingsRootDestination.route()
     ) {
         composable(SettingsDestination.route()) { navBackStackEntry ->
-            SettingsScreen(
-                viewModel = getViewModel(owner = navBackStackEntry)
-            )
+            SettingsScreen(viewModel = getViewModel(owner = navBackStackEntry))
         }
     }
 }

@@ -17,11 +17,11 @@ import com.example.mtgkmm.feature.search.domain.model.MtgCreature
 import com.example.mtgkmm.feature.search.domain.model.MtgKeyword
 import com.example.mtgkmm.feature.search.domain.model.MtgStat
 import com.example.mtgkmm.feature.search.domain.repository.CardRepository
+import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class CardRepositoryImplTest {
 
@@ -29,17 +29,17 @@ class CardRepositoryImplTest {
 
     @Test
     fun `getCards SHOULD return EitherRight WHEN cardApi returns Right`() = runTest {
-        sut = CardRepositoryImpl(
-            cardApi = TestCardApiSuccess(),
-            cardStorage = TestCardStorage()
-        )
-        val expectedResult = NetworkCardsResponse(
-            data = null,
-            hasMore = null,
-            nextPage = null,
-            objectType = null,
-            totalCards = null,
-        ).toDomain().buildRight()
+        sut = CardRepositoryImpl(cardApi = TestCardApiSuccess(), cardStorage = TestCardStorage())
+        val expectedResult =
+            NetworkCardsResponse(
+                data = null,
+                hasMore = null,
+                nextPage = null,
+                objectType = null,
+                totalCards = null
+            )
+                .toDomain()
+                .buildRight()
 
         val result = sut.getCards(CARD_NAME)
 
@@ -48,10 +48,7 @@ class CardRepositoryImplTest {
 
     @Test
     fun `getCards SHOULD return EitherLeft WHEN cardApi returns Left`() = runTest {
-        sut = CardRepositoryImpl(
-            cardApi = TestCardApiFailure(),
-            cardStorage = TestCardStorage()
-        )
+        sut = CardRepositoryImpl(cardApi = TestCardApiFailure(), cardStorage = TestCardStorage())
         val expectedResult = Failure.UnknownError.buildLeft()
 
         val result = sut.getCards(CARD_NAME)
@@ -61,10 +58,7 @@ class CardRepositoryImplTest {
 
     @Test
     fun `saveCard SHOULD return result from cardStorage saveCard`() = runTest {
-        sut = CardRepositoryImpl(
-            cardApi = TestCardApiFailure(),
-            cardStorage = TestCardStorage()
-        )
+        sut = CardRepositoryImpl(cardApi = TestCardApiFailure(), cardStorage = TestCardStorage())
         val expectedResult = Unit.buildRight()
         val mtgCard = buildMtgCard()
 
@@ -76,10 +70,7 @@ class CardRepositoryImplTest {
     @Test
     fun `observeRecentlyViewedCards SHOULD return two items when we saveCard is called twice`() =
         runTest {
-            sut = CardRepositoryImpl(
-                cardApi = TestCardApiFailure(),
-                cardStorage = TestCardStorage()
-            )
+            sut = CardRepositoryImpl(cardApi = TestCardApiFailure(), cardStorage = TestCardStorage())
             val expectedResult = listOf(buildMtgCard())
 
             sut.observeRecentlyViewedCards().test {
@@ -91,40 +82,30 @@ class CardRepositoryImplTest {
 
 private class TestCardApiSuccess : CardApi {
 
-    override suspend fun getCard(
-        cardName: String
-    ): Either<Failure, NetworkCardsResponse> =
+    override suspend fun getCard(cardName: String): Either<Failure, NetworkCardsResponse> =
         NetworkCardsResponse(
             data = null,
             hasMore = null,
             nextPage = null,
             objectType = null,
-            totalCards = null,
-        ).buildRight()
-
+            totalCards = null
+        )
+            .buildRight()
 }
 
 private class TestCardApiFailure : CardApi {
 
-    override suspend fun getCard(
-        cardName: String
-    ): Either<Failure, NetworkCardsResponse> =
+    override suspend fun getCard(cardName: String): Either<Failure, NetworkCardsResponse> =
         Failure.UnknownError.buildLeft()
-
 }
 
 private class TestCardStorage : CardStorage {
 
     private val items = mutableListOf(buildMtgCard().toLocal())
 
-    override suspend fun saveCard(
-        card: MtgCard
-    ): Either<Failure, Unit> = Unit.buildRight()
+    override suspend fun saveCard(card: MtgCard): Either<Failure, Unit> = Unit.buildRight()
 
-    override fun observeRecentlyViewedCards(): Flow<List<LocalMtgCard>> =
-        flow {
-            emit(items)
-        }
+    override fun observeRecentlyViewedCards(): Flow<List<LocalMtgCard>> = flow { emit(items) }
 }
 
 private fun MtgCard.toLocal(): LocalMtgCard =
@@ -137,21 +118,11 @@ private fun MtgCard.toLocal(): LocalMtgCard =
         stat = stat.toLocal(),
         oracleText = oracleText,
         legalities = "",
-        artist = artist,
+        artist = artist
     )
 
 private fun buildMtgCard(): MtgCard =
-    MtgCard(
-        CARD_NAME,
-        MANA_COST,
-        CREATURE,
-        URL,
-        KEYWORDS,
-        STAT,
-        ORACLE_TEXT,
-        LEGALITIES,
-        ARTIST
-    )
+    MtgCard(CARD_NAME, MANA_COST, CREATURE, URL, KEYWORDS, STAT, ORACLE_TEXT, LEGALITIES, ARTIST)
 
 private const val CARD_NAME = "name"
 private const val MANA_COST = 2
