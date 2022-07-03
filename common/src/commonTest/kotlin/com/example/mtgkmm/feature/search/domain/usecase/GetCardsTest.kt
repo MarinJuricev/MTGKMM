@@ -30,11 +30,11 @@ class GetCardsTest {
 
     private inner class FakeCardRepository : CardRepository {
         override suspend fun getCards(cardName: String): Either<Failure, MtgCardsData> {
-            TODO("Not yet implemented")
+            return Failure.UnknownError.buildLeft()
         }
 
         override suspend fun saveCard(mtgCard: MtgCard): Either<Failure, Unit> {
-            return Failure.UnknownError.buildLeft()
+            TODO("Not yet implemented")
         }
 
         override fun observeRecentlyViewedCards(): Flow<List<MtgCard>> {
