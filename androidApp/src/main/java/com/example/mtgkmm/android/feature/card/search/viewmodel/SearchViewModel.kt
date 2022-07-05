@@ -50,26 +50,25 @@ class SearchViewModel(
         }
     }
 
-    val state =
-        combine(cardData, error, searchText, isLoading, recentlyViewedCards) {
-                data,
-                error,
-                searchText,
-                isLoading,
-                recentlyViewedCards ->
-            SearchState(
-                isLoading = isLoading,
-                error = error,
-                currentSearch = searchText,
-                data = data,
-                recentlyViewedCards = recentlyViewedCards
-            )
-        }
-            .stateIn(
-                viewModelScope,
-                SharingStarted.WhileSubscribed(TIMEOUT_DELAY),
-                initialValue = SearchState()
-            )
+    val state = combine(
+        cardData,
+        error,
+        searchText,
+        isLoading,
+        recentlyViewedCards,
+    ) { data, error, searchText, isLoading, recentlyViewedCards ->
+        SearchState(
+            isLoading = isLoading,
+            error = error,
+            currentSearch = searchText,
+            data = data,
+            recentlyViewedCards = recentlyViewedCards
+        )
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(TIMEOUT_DELAY),
+        initialValue = SearchState()
+    )
 
     override fun onEvent(event: SearchEvent) {
         when (event) {
