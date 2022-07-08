@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class NetworkPreview(
     @SerialName("previewed_at") val previewedAt: String?,
     val source: String?,
-    @SerialName("source_uri") val sourceUri: String?
+    @SerialName("source_uri") val sourceUri: String?,
 )

@@ -14,7 +14,7 @@ private val LightColorPalette =
         primary = purpleDark,
         primaryVariant = purple,
         secondary = purpleLight,
-        background = white
+        background = white,
     )
 
 @Composable
@@ -23,6 +23,6 @@ fun MtgTheme(isDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable 
         colors = LightColorPalette,
         typography = Typography,
         shapes = Shapes,
-        content = content
+        content = content,
     )
 }

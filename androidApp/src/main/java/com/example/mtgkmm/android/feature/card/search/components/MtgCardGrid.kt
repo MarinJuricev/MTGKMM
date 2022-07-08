@@ -21,7 +21,7 @@ fun MtgCardGrid(cards: List<UiMtgCard>, onEvent: (SearchEvent) -> Unit) {
             MtgAsyncImage(
                 modifier = Modifier.size(256.dp).padding(8.dp).clickable { onEvent(OnCardClick(mtgCard)) },
                 url = mtgCard.url,
-                contentDescription = mtgCard.name
+                contentDescription = mtgCard.name,
             )
         }
     }

@@ -4,5 +4,5 @@ import androidx.compose.runtime.Composable
 
 data class TopBarViewState(
     val isVisible: Boolean = false,
-    val content: @Composable (() -> Unit)? = null
+    val content: @Composable (() -> Unit)? = null,
 )

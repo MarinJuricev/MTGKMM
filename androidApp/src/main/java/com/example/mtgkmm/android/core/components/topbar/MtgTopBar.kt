@@ -17,6 +17,6 @@ fun MtgTopBar(state: TopBarViewState) {
     AnimatedVisibility(
         visible = state.isVisible,
         enter = expandVertically(animationSpec = topBarSpring),
-        exit = shrinkVertically(animationSpec = topBarSpring)
+        exit = shrinkVertically(animationSpec = topBarSpring),
     ) { state.content?.let { content -> content() } }
 }

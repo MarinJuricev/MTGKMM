@@ -17,7 +17,7 @@ data class UiMtgCard(
     val stat: UiMtgStat,
     val oracleText: String,
     val legalities: List<UiLegality>,
-    val artist: String
+    val artist: String,
 ) : Parcelable
 
 fun MtgCard.toUi(): UiMtgCard =
@@ -30,7 +30,7 @@ fun MtgCard.toUi(): UiMtgCard =
         stat = stat.toUi(),
         oracleText = oracleText,
         legalities = emptyList(),
-        artist = artist
+        artist = artist,
     )
 
 fun UiMtgCard.toDomain(): MtgCard =
@@ -43,5 +43,5 @@ fun UiMtgCard.toDomain(): MtgCard =
         stat = stat.toDomain(),
         oracleText = oracleText,
         legalities = emptyList(),
-        artist = artist
+        artist = artist,
     )

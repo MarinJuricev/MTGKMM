@@ -17,7 +17,7 @@ data class NetworkCardsResponse(
     @SerialName("has_more") val hasMore: Boolean?,
     @SerialName("next_page") val nextPage: String?,
     @SerialName("object") val objectType: String?,
-    @SerialName("total_cards") val totalCards: Int?
+    @SerialName("total_cards") val totalCards: Int?,
 )
 
 fun NetworkCardsResponse.toDomain(): MtgCardsData =
@@ -26,7 +26,7 @@ fun NetworkCardsResponse.toDomain(): MtgCardsData =
         Pagination(
             totalCards = totalCards.orZero(),
             hasMore = hasMore.orFalse(),
-            nextPage = nextPage.orEmpty()
+            nextPage = nextPage.orEmpty(),
         ),
         cards =
         data?.map { networkCardData ->
@@ -40,11 +40,11 @@ fun NetworkCardsResponse.toDomain(): MtgCardsData =
                     stat = MtgStat(power = power.orZero(), toughness = toughness.orZero()),
                     oracleText = oracleText.orEmpty(),
                     legalities = emptyList(), // TODO Parse this
-                    artist = artist.orEmpty()
+                    artist = artist.orEmpty(),
                 )
             }
         }
-            ?: emptyList()
+            ?: emptyList(),
     )
 
 private fun List<String>.toKeywordDomain(): List<MtgKeyword> = map { keyword ->

@@ -16,7 +16,7 @@ import androidx.navigation.NavHostController
 fun <T> RowScope.MtgBottomNavigationItem(
     screen: BottomNavigationDestination<T>,
     currentDestination: NavDestination?,
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     BottomNavigationItem(
         icon = { Icon(painter = painterResource(screen.iconId), contentDescription = screen.route()) },
@@ -35,6 +35,6 @@ fun <T> RowScope.MtgBottomNavigationItem(
                 // Restore state when reselecting a previously selected item
                 restoreState = true
             }
-        }
+        },
     )
 }

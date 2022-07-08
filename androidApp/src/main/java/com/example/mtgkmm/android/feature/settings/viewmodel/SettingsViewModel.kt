@@ -5,7 +5,7 @@ import com.example.mtgkmm.android.feature.settings.model.SettingsEvent
 
 class SettingsViewModel(
     private val observeSettingsData: ObserveSettingsData,
-    private val setSortType: SetSortType
+    private val setSortType: SetSortType,
 ) : BaseViewModel<SettingsEvent>() {
 
     override fun onEvent(event: SettingsEvent) {

@@ -16,7 +16,7 @@ class TopBarViewModel : BaseViewModel<TopBarEvent>() {
         _state.stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5_000),
-            initialValue = TopBarViewState()
+            initialValue = TopBarViewState(),
         )
 
     override fun onEvent(event: TopBarEvent) {

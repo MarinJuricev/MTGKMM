@@ -29,8 +29,8 @@ fun SearchScreen(viewModel: SearchViewModel) {
     LaunchedEffect(key1 = topBarEvent) {
         topBarEvent?.invoke(
             OnTopBarChange(
-                TopBarViewState(isVisible = true) { MtgSearchTopBar(state, viewModel::onEvent) }
-            )
+                TopBarViewState(isVisible = true) { MtgSearchTopBar(state, viewModel::onEvent) },
+            ),
         )
     }
     Column {
@@ -42,13 +42,13 @@ fun SearchScreen(viewModel: SearchViewModel) {
         if (state.data?.cards.isNullOrEmpty()) {
             MtgErrorScreen(
                 modifier = Modifier.weight(0.8f),
-                errorMessage = stringResource(id = R.string.empty_search)
+                errorMessage = stringResource(id = R.string.empty_search),
             )
             AnimatedVisibility(visible = state.recentlyViewedCards.isNotEmpty()) {
                 MtgRecentlyViewedCards(
                     modifier = Modifier.align(Alignment.End),
                     recentlyViewedCards = state.recentlyViewedCards,
-                    onEvent = viewModel::onEvent
+                    onEvent = viewModel::onEvent,
                 )
             }
         }

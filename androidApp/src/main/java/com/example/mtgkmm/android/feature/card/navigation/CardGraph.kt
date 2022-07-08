@@ -14,7 +14,7 @@ fun NavGraphBuilder.buildCardGraph() {
         composable(SearchDestination.route()) { navBackStackEntry ->
             SearchScreen(viewModel = getViewModel(owner = navBackStackEntry))
         }
-        composable(CardDetailDestination.route(), CardDetailDestination.arguments) { navBackStackEntry
+        composable(CardDetailDestination.route(), CardDetailDestination.arguments) { navBackStackEntry,
             ->
             val mtgCard =
                 navBackStackEntry.arguments?.getParcelable<UiMtgCard>(CARD_DETAIL_PARAM)

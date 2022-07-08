@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class NetworkPurchaseUris(
     @SerialName("cardhoarder") val cardHoarder: String?,
     @SerialName("cardmarket") val cardMarket: String?,
-    @SerialName("tcgplayer") val tcgPlayer: String?
+    @SerialName("tcgplayer") val tcgPlayer: String?,
 )

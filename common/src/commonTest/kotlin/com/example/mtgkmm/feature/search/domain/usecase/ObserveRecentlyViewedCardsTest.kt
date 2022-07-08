@@ -59,5 +59,5 @@ private fun buildMtgCard(): MtgCard =
         stat = MtgStat(0, 0),
         oracleText = "",
         legalities = emptyList(),
-        artist = ""
+        artist = "",
     )

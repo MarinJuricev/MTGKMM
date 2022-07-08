@@ -25,7 +25,7 @@ class CardStorageImpl(val localMtgCardQueries: LocalMtgCardQueries) : CardStorag
                     stat.toLocal(),
                     oracleText,
                     legalities.toString(),
-                    artist
+                    artist,
                 )
                 .buildRight()
         }

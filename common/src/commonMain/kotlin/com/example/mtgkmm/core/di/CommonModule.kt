@@ -34,7 +34,7 @@ fun commonModule(enableNetworkLogs: Boolean) = module {
             httpClientEngine = get(),
             json = get(),
             enableNetworkLogs = enableNetworkLogs,
-            baseUrl = get(named(BASE_URL))
+            baseUrl = get(named(BASE_URL)),
         )
     }
 
@@ -69,7 +69,7 @@ fun createHttpClient(
     httpClientEngine: HttpClientEngine,
     json: Json,
     enableNetworkLogs: Boolean,
-    baseUrl: String
+    baseUrl: String,
 ) =
     HttpClient(httpClientEngine) {
         install(ContentNegotiation) { json(json) }

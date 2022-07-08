@@ -7,7 +7,7 @@ import com.example.mtgkmm.android.feature.settings.navigation.SettingsDestinatio
 
 abstract class BottomNavigationDestination<T>(
     @StringRes val resourceId: Int,
-    @DrawableRes val iconId: Int
+    @DrawableRes val iconId: Int,
 ) : NavigationDestination<T> {
 
     companion object {

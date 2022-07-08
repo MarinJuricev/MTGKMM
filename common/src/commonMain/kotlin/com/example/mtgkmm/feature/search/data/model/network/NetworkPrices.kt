@@ -10,5 +10,5 @@ data class NetworkPrices(
     val tix: String?,
     val usd: String?,
     @SerialName("usd_etched") val usdEtched: String?,
-    @SerialName("usd_foil") val usdFoil: String?
+    @SerialName("usd_foil") val usdFoil: String?,
 )

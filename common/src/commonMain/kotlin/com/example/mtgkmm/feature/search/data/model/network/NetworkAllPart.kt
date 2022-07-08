@@ -10,5 +10,5 @@ data class NetworkAllPart(
     val name: String?,
     @SerialName("object") val objectType: String?,
     @SerialName("type_line") val typeLine: String?,
-    val uri: String?
+    val uri: String?,
 )

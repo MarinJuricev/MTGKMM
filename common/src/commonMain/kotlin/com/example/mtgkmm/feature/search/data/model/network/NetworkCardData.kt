@@ -78,5 +78,5 @@ data class NetworkCardData(
     @SerialName("type_line") val typeLine: String?,
     val uri: String?,
     val variation: Boolean?,
-    val watermark: String?
+    val watermark: String?,
 )

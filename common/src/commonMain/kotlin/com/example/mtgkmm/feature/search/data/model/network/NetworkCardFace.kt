@@ -19,5 +19,5 @@ data class NetworkCardFace(
     @SerialName("oracle_text") val oracleText: String?,
     val power: String?,
     val toughness: String?,
-    @SerialName("type_line") val typeLine: String?
+    @SerialName("type_line") val typeLine: String?,
 )

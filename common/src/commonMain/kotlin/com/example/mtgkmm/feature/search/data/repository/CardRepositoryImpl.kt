@@ -42,5 +42,5 @@ private fun LocalMtgCard.toDomain(): MtgCard =
         stat = stat.toDomain(),
         oracleText = oracleText,
         legalities = emptyList(),
-        artist = artist
+        artist = artist,
     )

@@ -35,7 +35,7 @@ val LocalTopBarEvents: ProvidableCompositionLocal<((TopBarEvent) -> Unit)?> = co
 fun MtgNavigation(
     navigator: Navigator,
     navController: NavHostController = rememberNavController(),
-    topBarViewModel: TopBarViewModel = getViewModel()
+    topBarViewModel: TopBarViewModel = getViewModel(),
 ) {
     LaunchedEffect(key1 = navigator) {
         navigator.navigationEvent.collect { navigationEvent ->
@@ -59,12 +59,12 @@ fun MtgNavigation(
                         MtgBottomNavigationItem(screen, currentDestination, navController)
                     }
                 }
-            }
+            },
         ) { paddingValues ->
             NavHost(
                 navController = navController,
                 startDestination = CardRootDestination.route(),
-                modifier = Modifier.padding(paddingValues)
+                modifier = Modifier.padding(paddingValues),
             ) {
                 buildCardGraph()
                 buildSettingsGraph()

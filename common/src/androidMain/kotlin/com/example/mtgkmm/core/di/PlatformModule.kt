@@ -18,8 +18,8 @@ actual fun platformModule() = module {
             LocalMtgCard.Adapter(
                 creatureAdapter = EnumColumnAdapter(),
                 keywordsAdapter = get(named(MTG_KEYWORD_ADAPTER_NAME)),
-                statAdapter = get(named(MTG_STAT_ADAPTER_NAME))
-            )
+                statAdapter = get(named(MTG_STAT_ADAPTER_NAME)),
+            ),
         )
     }
     single { AndroidSettings.Factory(get()).create() }

@@ -36,7 +36,7 @@ class CardRepositoryImplTest {
                 hasMore = null,
                 nextPage = null,
                 objectType = null,
-                totalCards = null
+                totalCards = null,
             )
                 .toDomain()
                 .buildRight()
@@ -88,7 +88,7 @@ private class TestCardApiSuccess : CardApi {
             hasMore = null,
             nextPage = null,
             objectType = null,
-            totalCards = null
+            totalCards = null,
         )
             .buildRight()
 }
@@ -118,7 +118,7 @@ private fun MtgCard.toLocal(): LocalMtgCard =
         stat = stat.toLocal(),
         oracleText = oracleText,
         legalities = "",
-        artist = artist
+        artist = artist,
     )
 
 private fun buildMtgCard(): MtgCard =

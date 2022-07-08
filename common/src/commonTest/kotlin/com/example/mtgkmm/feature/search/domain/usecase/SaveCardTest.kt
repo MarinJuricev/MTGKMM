@@ -42,7 +42,7 @@ class SaveCardTest {
             stat = MtgStat(0, 0),
             oracleText = "",
             legalities = emptyList(),
-            artist = ""
+            artist = "",
         )
 
     private inner class FakeCardRepository : CardRepository {

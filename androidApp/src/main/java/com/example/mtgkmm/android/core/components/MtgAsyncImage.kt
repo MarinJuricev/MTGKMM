@@ -23,19 +23,19 @@ fun MtgAsyncImage(
     contentDescription: String,
     modifier: Modifier = Modifier,
     placeHolder: @Composable (() -> Unit)? = null,
-    error: @Composable (() -> Unit)? = null
+    error: @Composable (() -> Unit)? = null,
 ) {
     SubcomposeAsyncImage(
         modifier = modifier,
         model = ImageRequest.Builder(LocalContext.current).data(url).crossfade(true).build(),
-        contentDescription = contentDescription
+        contentDescription = contentDescription,
     ) {
         when (painter.state) {
             AsyncImagePainter.State.Empty -> {
                 MtgErrorScreen(
                     modifier = Modifier.wrapContentSize(),
                     shrugTextStyle = MaterialTheme.typography.h6,
-                    errorMessage = stringResource(id = R.string.image_empty_error)
+                    errorMessage = stringResource(id = R.string.image_empty_error),
                 )
             }
             is AsyncImagePainter.State.Loading -> {
@@ -44,7 +44,7 @@ fun MtgAsyncImage(
                     Box(
                         modifier =
                         Modifier.fillMaxSize()
-                            .placeholder(visible = true, highlight = PlaceholderHighlight.shimmer())
+                            .placeholder(visible = true, highlight = PlaceholderHighlight.shimmer()),
                     )
                 }
             }
@@ -55,7 +55,7 @@ fun MtgAsyncImage(
                     MtgErrorScreen(
                         modifier = Modifier.wrapContentSize(),
                         shrugTextStyle = MaterialTheme.typography.h6,
-                        errorMessage = stringResource(id = R.string.image_fetch_error)
+                        errorMessage = stringResource(id = R.string.image_fetch_error),
                     )
                 }
         }

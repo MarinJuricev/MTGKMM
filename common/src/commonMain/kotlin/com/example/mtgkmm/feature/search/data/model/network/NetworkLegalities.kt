@@ -23,5 +23,5 @@ data class NetworkLegalities(
     val pioneer: String?,
     @SerialName("premodern") val preModern: String?,
     val standard: String?,
-    val vintage: String?
+    val vintage: String?,
 )

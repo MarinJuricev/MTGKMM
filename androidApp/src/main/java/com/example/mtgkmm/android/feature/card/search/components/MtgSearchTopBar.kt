@@ -28,9 +28,9 @@ fun MtgSearchTopBar(state: SearchState, onEvent: (SearchEvent) -> Unit) {
                 colors =
                 TextFieldDefaults.outlinedTextFieldColors(
                     backgroundColor = MaterialTheme.colors.surface,
-                    textColor = MaterialTheme.colors.primary
+                    textColor = MaterialTheme.colors.primary,
                 ),
-                onValueChange = { newSearch -> onEvent(SearchEvent.OnSearchUpdate(newSearch)) }
+                onValueChange = { newSearch -> onEvent(SearchEvent.OnSearchUpdate(newSearch)) },
             )
         }
     }

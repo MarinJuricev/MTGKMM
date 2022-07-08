@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
 class SearchViewModel(
     private val getCards: GetCards,
     private val observeRecentlyViewedCards: ObserveRecentlyViewedCards,
-    private val navigator: Navigator
+    private val navigator: Navigator,
 ) : BaseViewModel<SearchEvent>() {
 
     private val error = MutableStateFlow<String?>(null)
@@ -56,18 +56,22 @@ class SearchViewModel(
         searchText,
         isLoading,
         recentlyViewedCards,
-    ) { data, error, searchText, isLoading, recentlyViewedCards ->
+    ) { data,
+        error,
+        searchText,
+        isLoading,
+        recentlyViewedCards, ->
         SearchState(
             isLoading = isLoading,
             error = error,
             currentSearch = searchText,
             data = data,
-            recentlyViewedCards = recentlyViewedCards
+            recentlyViewedCards = recentlyViewedCards,
         )
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(TIMEOUT_DELAY),
-        initialValue = SearchState()
+        initialValue = SearchState(),
     )
 
     override fun onEvent(event: SearchEvent) {
@@ -90,13 +94,12 @@ class SearchViewModel(
 
     private fun handleSearchUpdate(cardName: String) {
         if (searchJob?.isActive == true) searchJob?.cancel()
-        searchJob =
-            viewModelScope.launch {
-                isLoading.update { true }
-                searchText.update { cardName }
-                delay(SEARCH_DEBOUNCE)
-                handleOnGetCards()
-            }
+        searchJob = viewModelScope.launch {
+            isLoading.update { true }
+            searchText.update { cardName }
+            delay(SEARCH_DEBOUNCE)
+            handleOnGetCards()
+        }
     }
 
     private fun handleCardClick(mtgCard: UiMtgCard) =

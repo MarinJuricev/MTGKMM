@@ -36,14 +36,15 @@ subprojects {
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         kotlin {
             target ("**/*.kt")
-            ktfmt().googleStyle()
             ktlint("0.45.2")
                 .setUseExperimental(true)
                 .userData(mapOf("android" to "true"))
                 .editorConfigOverride(
                     mapOf(
                         "indent_size" to 4,
-                        "max_line_length" to 120,
+                        "max_line_length" to 140,
+                        "ij_kotlin_allow_trailing_comma" to true,
+                        "ij_kotlin_allow_trailing_comma_on_call_site" to true,
                     )
                 )
         }
@@ -53,9 +54,14 @@ subprojects {
             ktlint() // or ktfmt() or prettier()
         }
 
-        format ("xml") {
-            target ("**/*.xml")
-            prettier(mapOf("prettier" to "2.0.5", "@prettier/plugin-xml" to "0.13.0")).config(mapOf("parser" to "xml", "tabWidth" to 4))
+        format("xml") {
+            target("**/*.xml")
+            prettier(mapOf("prettier" to "2.0.5", "@prettier/plugin-xml" to "0.13.0")).config(
+                mapOf(
+                    "parser" to "xml",
+                    "tabWidth" to 4
+                )
+            )
         }
     }
 }
