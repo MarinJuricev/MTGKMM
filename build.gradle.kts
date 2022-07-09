@@ -1,5 +1,6 @@
 plugins {
-    id("com.diffplug.spotless") version "6.7.2"
+    id("com.diffplug.spotless") version "6.8.0"
+    id("com.github.ben-manes.versions") version "0.42.0"
 }
 
 //TODO Migrate to plugin DSL
@@ -35,7 +36,7 @@ subprojects {
     apply(plugin = "com.diffplug.spotless")
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         kotlin {
-            target ("**/*.kt")
+            target("**/*.kt")
             ktlint("0.45.2")
                 .setUseExperimental(true)
                 .userData(mapOf("android" to "true"))

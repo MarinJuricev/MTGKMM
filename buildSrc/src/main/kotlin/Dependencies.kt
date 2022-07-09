@@ -3,30 +3,30 @@ object Versions {
     const val androidCompileSdk = 32
     const val androidTargetSdk = androidCompileSdk
 
-    const val kotlinCoroutines = "1.6.1"
-    const val kotlinxSerialization = "1.3.1"
+    const val kotlinCoroutines = "1.6.3"
+    const val kotlinxSerialization = "1.3.3"
 
-    const val koin = "3.1.6"
-    const val ktor = "2.0.0"
+    const val koin = "3.2.0"
+    const val ktor = "2.0.3"
     const val sqlDelight = "1.5.3"
 
-    const val compose = "1.2.0-alpha08"
-    const val composeCompiler = "1.2.0-alpha08"
-    const val navCompose = "2.4.2"
-    const val coilCompose = "2.0.0-rc03"
-    const val accompanist = "0.23.0"
+    const val compose = "1.3.0-alpha01"
+    const val composeCompiler = "1.2.0"
+    const val navCompose = "2.5.0"
+    const val coilCompose = "2.1.0"
+    const val accompanist = "0.24.13-rc"
 
     const val material = "1.4.0"
-    const val activityCompose = "1.4.0-beta01"
-    const val lifecycleKtx = "2.4.0-rc01"
+    const val activityCompose = "1.6.0-alpha05"
+    const val lifecycleKtx = "2.6.0-alpha01"
     const val lifecycleRuntimeKtx = lifecycleKtx
     const val lifecycleViewModelKtx = lifecycleKtx
 
     const val turbine = "0.8.0"
 
-    const val settings = "0.9"
+    const val settings = "1.0.0-alpha01"
 
-    const val gradleVersionsPlugin = "0.39.0"
+    const val gradleVersionsPlugin = "0.42.0"
 
 }
 
