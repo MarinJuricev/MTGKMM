@@ -22,5 +22,5 @@ actual fun platformModule() = module {
             ),
         )
     }
-    single { AndroidSettings.Factory(get()).create() }
+//    single { AndroidSettings.Factory(get()).create() }
 }
