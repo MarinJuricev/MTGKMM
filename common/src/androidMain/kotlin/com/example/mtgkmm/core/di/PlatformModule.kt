@@ -3,6 +3,7 @@ package com.example.mtgkmm.core.di
 import com.example.mtgkmm.core.db.LocalMtgCard
 import com.example.mtgkmm.core.db.MtgKmmDatabase
 import com.russhwolf.settings.AndroidSettings
+import com.russhwolf.settings.SharedPreferencesSettings
 import com.squareup.sqldelight.EnumColumnAdapter
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import io.ktor.client.engine.okhttp.OkHttp
@@ -22,5 +23,5 @@ actual fun platformModule() = module {
             ),
         )
     }
-    single { AndroidSettings.Factory(get()).create() }
+    single { SharedPreferencesSettings.Factory(get()).create() }
 }
