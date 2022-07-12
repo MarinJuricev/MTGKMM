@@ -37,7 +37,7 @@ subprojects {
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         kotlin {
             target("**/*.kt")
-            ktlint("0.45.2")
+            ktlint("0.46.1")
                 .setUseExperimental(true)
                 .userData(mapOf("android" to "true"))
                 .editorConfigOverride(
