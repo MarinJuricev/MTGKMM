@@ -3,6 +3,7 @@ package com.example.mtgkmm.core.di
 import com.example.mtgkmm.core.db.LocalMtgCard
 import com.example.mtgkmm.core.db.MtgKmmDatabase
 import com.russhwolf.settings.AppleSettings
+import com.russhwolf.settings.NSUserDefaultsSettings
 import com.squareup.sqldelight.EnumColumnAdapter
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
 import io.ktor.client.engine.darwin.Darwin
@@ -22,5 +23,5 @@ actual fun platformModule() = module {
             ),
         )
     }
-    single { AppleSettings.Factory().create() }
+    single { NSUserDefaultsSettings.Factory().create() }
 }
