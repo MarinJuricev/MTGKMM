@@ -1,0 +1,12 @@
+import com.example.mtgkmm.core.Either
+import com.example.mtgkmm.core.Failure
+import com.example.mtgkmm.feature.settings.domain.model.SettingsItem
+import kotlinx.coroutines.flow.Flow
+
+interface SettingRepository {
+    fun observeSettingsData(): Flow<List<SettingsItem>>
+
+    suspend fun updateSettingsItem(
+        id: Int
+    ): Either<Failure, Unit>
+}
