@@ -7,6 +7,6 @@ interface SettingRepository {
     fun observeSettingsData(): Flow<List<SettingsItem>>
 
     suspend fun updateSettingsItem(
-        id: Int
+        settingsItem: SettingsItem
     ): Either<Failure, Unit>
 }
