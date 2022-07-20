@@ -25,6 +25,7 @@ object Versions {
     const val turbine = "0.8.0"
 
     const val settings = "1.0.0-alpha01"
+    const val dataStore = "1.0.0"
 
     const val gradleVersionsPlugin = "0.42.0"
 
@@ -33,10 +34,14 @@ object Versions {
 object Dependencies {
 
     object Kotlinx {
-        const val serializationCore = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
-        const val serializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}"
-        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
-        const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutines}"
+        const val serializationCore =
+            "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
+        const val serializationJson =
+            "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}"
+        const val coroutinesCore =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
+        const val coroutinesTest =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutines}"
     }
 
     object Compose {
@@ -44,17 +49,21 @@ object Dependencies {
         const val ui = "androidx.compose.ui:ui:${Versions.compose}"
         const val uiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"
         const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
-        const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
+        const val foundationLayout =
+            "androidx.compose.foundation:foundation-layout:${Versions.compose}"
         const val material = "androidx.compose.material:material:${Versions.compose}"
         const val navigation = "androidx.navigation:navigation-compose:${Versions.navCompose}"
 
         const val coilCompose = "io.coil-kt:coil-compose:${Versions.coilCompose}"
-        const val accompanistPlaceholder = "com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}"
+        const val accompanistPlaceholder =
+            "com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}"
     }
 
     object AndroidX {
-        const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
-        const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewModelKtx}"
+        const val lifecycleRuntimeKtx =
+            "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
+        const val lifecycleViewModelKtx =
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleViewModelKtx}"
         const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
     }
 
@@ -78,14 +87,16 @@ object Dependencies {
 
     object SqlDelight {
         const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
-        const val coroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
+        const val coroutineExtensions =
+            "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
         const val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
         const val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
     }
 
     object Gradle {
         const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
-        const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
+        const val gradleVersionsPlugin =
+            "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersionsPlugin}"
     }
 
     object Test {
@@ -94,5 +105,9 @@ object Dependencies {
 
     object Settings {
         const val multiplatform = "com.russhwolf:multiplatform-settings:${Versions.settings}"
+        const val dataStore = "com.russhwolf:multiplatform-settings-datastore:${Versions.settings}"
+        const val observable = "com.russhwolf:multiplatform-settings-coroutines:${Versions.settings}"
+        const val dataStoreAndroid = "androidx.datastore:datastore-preferences:${Versions.dataStore}"
+        const val dataStoreCore = "androidx.datastore:datastore-core:${Versions.dataStore}"
     }
 }

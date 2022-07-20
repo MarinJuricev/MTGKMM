@@ -53,6 +53,8 @@ kotlin {
 
                 with(Dependencies.Settings) {
                     implementation(multiplatform)
+                    implementation(dataStore)
+                    implementation(observable)
                 }
             }
         }
@@ -68,6 +70,8 @@ kotlin {
             dependencies {
                 implementation(Dependencies.Ktor.clientOkhttp)
                 implementation(Dependencies.SqlDelight.androidDriver)
+                implementation(Dependencies.Settings.dataStoreAndroid)
+                implementation(Dependencies.Settings.dataStoreCore)
             }
         }
         val androidTest by getting {
@@ -111,6 +115,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+dependencies {
+    implementation("androidx.datastore:datastore-core:1.0.0-rc01")
+    implementation("androidx.preference:preference-ktx:1.1.1")
 }
 
 sqldelight {

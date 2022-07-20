@@ -1,13 +1,17 @@
 package com.example.mtgkmm.core.di
 
+import android.content.Context
+import androidx.datastore.core.DataStore
 import com.example.mtgkmm.core.db.LocalMtgCard
 import com.example.mtgkmm.core.db.MtgKmmDatabase
-import com.russhwolf.settings.SharedPreferencesSettings
+import com.russhwolf.settings.datastore.DataStoreSettings
 import com.squareup.sqldelight.EnumColumnAdapter
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+
+val Context.dataStore: DataStore<> by preferenceDataStore(name = "settings")
 
 actual fun platformModule() = module {
     single { OkHttp.create() }
@@ -22,5 +26,11 @@ actual fun platformModule() = module {
             ),
         )
     }
-    single { SharedPreferencesSettings.Factory(get()).create() }
+    single {
+        val context: Context
+
+
+
+        DataStoreSettings(context.dataStore) }
 }
+

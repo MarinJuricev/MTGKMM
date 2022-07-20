@@ -4,6 +4,7 @@ import com.example.mtgkmm.core.Either
 import com.example.mtgkmm.core.Failure
 import com.example.mtgkmm.core.buildRight
 import com.russhwolf.settings.Settings
+import com.russhwolf.settings.get
 import com.russhwolf.settings.set
 import kotlinx.coroutines.flow.Flow
 
@@ -19,6 +20,7 @@ class KeyValueStorageImpl(
     override suspend fun observeItem(
         key: String
     ): Flow<String> {
+        settings.ls
         settings.get
     }
 }
