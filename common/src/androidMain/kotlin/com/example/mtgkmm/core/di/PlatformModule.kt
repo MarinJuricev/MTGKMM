@@ -2,8 +2,15 @@ package com.example.mtgkmm.core.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.example.mtgkmm.core.db.LocalMtgCard
 import com.example.mtgkmm.core.db.MtgKmmDatabase
+import com.example.mtgkmm.feature.settings.data.storage.KeyValueStorage
+import com.example.mtgkmm.feature.settings.data.storage.KeyValueStorageImpl
+import com.russhwolf.settings.ExperimentalSettingsApi
+import com.russhwolf.settings.ExperimentalSettingsImplementation
+import com.russhwolf.settings.coroutines.FlowSettings
 import com.russhwolf.settings.datastore.DataStoreSettings
 import com.squareup.sqldelight.EnumColumnAdapter
 import com.squareup.sqldelight.android.AndroidSqliteDriver
@@ -11,8 +18,9 @@ import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-val Context.dataStore: DataStore<> by preferenceDataStore(name = "settings")
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
+@OptIn(ExperimentalSettingsImplementation::class, ExperimentalSettingsApi::class)
 actual fun platformModule() = module {
     single { OkHttp.create() }
     single {
@@ -26,11 +34,11 @@ actual fun platformModule() = module {
             ),
         )
     }
-    single {
-        val context: Context
-
-
-
-        DataStoreSettings(context.dataStore) }
+    single<FlowSettings> {
+        DataStoreSettings(get<Context>().dataStore)
+    }
+    single<KeyValueStorage> {
+        KeyValueStorageImpl(settings = get())
+    }
 }
 
