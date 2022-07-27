@@ -6,8 +6,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.mtgkmm.core.db.LocalMtgCard
 import com.example.mtgkmm.core.db.MtgKmmDatabase
-import com.example.mtgkmm.feature.settings.data.storage.KeyValueStorage
-import com.example.mtgkmm.feature.settings.data.storage.KeyValueStorageImpl
 import com.russhwolf.settings.ExperimentalSettingsApi
 import com.russhwolf.settings.ExperimentalSettingsImplementation
 import com.russhwolf.settings.coroutines.FlowSettings
@@ -36,9 +34,6 @@ actual fun platformModule() = module {
     }
     single<FlowSettings> {
         DataStoreSettings(get<Context>().dataStore)
-    }
-    single<KeyValueStorage> {
-        KeyValueStorageImpl(settings = get())
     }
 }
 

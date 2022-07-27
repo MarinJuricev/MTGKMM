@@ -1,5 +1,7 @@
 package com.example.mtgkmm.core.di
 
+import com.example.mtgkmm.core.data.storage.KeyValueStorage
+import com.example.mtgkmm.core.data.storage.KeyValueStorageImpl
 import com.example.mtgkmm.feature.search.data.model.local.LocalMtgStat
 import com.example.mtgkmm.feature.search.domain.model.MtgKeyword
 import com.squareup.sqldelight.ColumnAdapter
@@ -19,6 +21,10 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 fun commonModule(enableNetworkLogs: Boolean) = module {
+    single<KeyValueStorage> {
+        KeyValueStorageImpl(settings = get())
+    }
+
     single {
         Json {
             isLenient = true

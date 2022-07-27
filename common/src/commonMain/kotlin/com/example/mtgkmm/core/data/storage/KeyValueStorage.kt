@@ -1,4 +1,4 @@
-package com.example.mtgkmm.feature.settings.data.storage
+package com.example.mtgkmm.core.data.storage
 
 import com.example.mtgkmm.core.Either
 import com.example.mtgkmm.core.Failure
@@ -8,5 +8,5 @@ interface KeyValueStorage {
 
     suspend fun updateItem(key: String, value: String): Either<Failure, Unit>
 
-    suspend fun observeItem(key: String): Flow<String>
+    fun observeItem(key: String): Flow<String>
 }
