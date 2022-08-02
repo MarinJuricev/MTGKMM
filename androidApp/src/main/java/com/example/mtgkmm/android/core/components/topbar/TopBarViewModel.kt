@@ -2,6 +2,7 @@ package com.example.mtgkmm.android.core.components.topbar
 
 import androidx.lifecycle.viewModelScope
 import com.example.mtgkmm.android.core.BaseViewModel
+import com.example.mtgkmm.android.core.TIMEOUT_DELAY
 import com.example.mtgkmm.android.core.components.topbar.model.TopBarEvent
 import com.example.mtgkmm.android.core.components.topbar.model.TopBarEvent.OnTopBarChange
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +16,7 @@ class TopBarViewModel : BaseViewModel<TopBarEvent>() {
     val state =
         _state.stateIn(
             viewModelScope,
-            SharingStarted.WhileSubscribed(5_000),
+            SharingStarted.WhileSubscribed(TIMEOUT_DELAY),
             initialValue = TopBarViewState(),
         )
 

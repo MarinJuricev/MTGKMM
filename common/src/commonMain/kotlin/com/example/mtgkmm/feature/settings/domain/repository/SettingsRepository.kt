@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface SettingsRepository {
     fun observeSettingsData(): Flow<List<SettingsItem>>
 
-    suspend fun updateSettingsItem(
-        settingsItem: SettingsItem
+    suspend fun updateSort(
+        updatedSort: String,
     ): Either<Failure, Unit>
 }

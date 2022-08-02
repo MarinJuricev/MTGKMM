@@ -12,20 +12,21 @@ class SettingsRepositoryImpl(
     private val keyValueStorage: KeyValueStorage,
 ) : SettingsRepository {
     override fun observeSettingsData(): Flow<List<SettingsItem>> =
-        //TODO if more values come just combine the multiple emissions into the list
         keyValueStorage.observeItem(SORT_KEY).map {
-            listOf(
-                SettingsItem(
-                    id = SORT_KEY,
-                    name = "Sort Order",
-                    value = it,
-                )
-            )
+            listOf(generateSortSettingsItem(it))
         }
 
-    override suspend fun updateSettingsItem(
-        settingsItem: SettingsItem
-    ): Either<Failure, Unit> = keyValueStorage.updateItem(settingsItem.id, settingsItem.value)
+    override suspend fun updateSort(
+        updatedSort: String,
+    ): Either<Failure, Unit> = keyValueStorage.updateItem(SORT_KEY, updatedSort)
+
+    private fun generateSortSettingsItem(
+        value: String
+    ) = SettingsItem(
+        id = SORT_KEY,
+        name = "Sort Order",
+        value = value,
+    )
 }
 
 private const val SORT_KEY = "sort"
